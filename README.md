@@ -8,7 +8,7 @@
 * 1.7. Using the XmlReader and XmlWriter classes, ensure that data is read/saved to an XML file
 * 1.8. Provide mutual reading/saving of data by the XmlWriter and StreamReader, StreamWriter and XmlReader classes
 * 1.9. A Wide range of data types, different levels of access to fields and methods, the use of static fields and methods, and constants are welcome.
-* 1.10. The girl has dimensionless sheets of film and paper. From them, it can cut various geometric shapes (circle, rectangle, equilateral triangle, etc.) of a certain size, and from some shapes, you can cut others. The shape to be cut must be smaller than the one it is being cut from.
+* 1.10. The girl has dimensionless sheets of film and paper. From them, she can cut various geometric shapes (circle, rectangle, equilateral triangle, etc.) of a certain size, and from some shapes, you can cut others. The shape to be cut must be smaller than the one it is being cut from.
 * 1.11. Another girl have a set of paints. Paper figures can be painted, but only 1 time. Figures from the film are colorless and cannot be painted.
 * 1.12. All figures must provide the ability to calculate the area and perimeter
 * 1.13. Also, the girl has a box for 20 figures, where you can put and get any figures.
