@@ -24,7 +24,7 @@ namespace Task.FileWork.Models
             {
                 while (reader.Read())
                 {
-                    if (reader.IsStartElement())
+                    if (reader.IsStartElement() && reader.Name != "Figures")
                     {
                         Enum.TryParse(reader.Name, out FigureTypes currentType);
                         switch (currentType)
@@ -44,7 +44,7 @@ namespace Task.FileWork.Models
             return figures;
         }
 
-        public void WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, XmlWriter writer)
+        public bool WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, XmlWriter writer)
         {
             using (writer = XmlWriter.Create(path))
             {
@@ -68,6 +68,7 @@ namespace Task.FileWork.Models
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
                 writer.Flush();
+                return true;
             }
         }
     }

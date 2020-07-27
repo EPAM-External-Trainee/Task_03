@@ -12,32 +12,32 @@ namespace Task.MyParsers.Models
         public void WriteCircularPaperFigure(XmlWriter writer, IPaperFigure circularFigure)
         {
             WriteElementName(writer, circularFigure as CircularFigure);
-            WriteColor(writer, circularFigure);
             WriteRadius(writer, circularFigure as CircularFigure);
+            WriteColor(writer, circularFigure);
             writer.WriteEndElement();
         }
 
         public void WriteCircularPaperFigure(StreamWriter writer, IPaperFigure circularFigure)
         {
             WriteElementName(writer, circularFigure as CircularFigure);
-            WriteColor(writer, circularFigure);
             WriteRadius(writer, circularFigure as CircularFigure);
+            WriteColor(writer, circularFigure);
             WriteEndElement(writer, circularFigure as CircularFigure);
         }
 
         public void WritePolygonPaperFigure(XmlWriter writer, IPaperFigure polygonFigure)
         {
             WriteElementName(writer, polygonFigure as PolygonFigure);
-            WriteColor(writer, polygonFigure);
             WriteSides(writer, polygonFigure as PolygonFigure);
+            WriteColor(writer, polygonFigure);
             writer.WriteEndElement();
         }
 
         public void WritePolygonPaperFigure(StreamWriter writer, IPaperFigure polygonFigure)
         {
             WriteElementName(writer, polygonFigure as PolygonFigure);
-            WriteColor(writer, polygonFigure);
             WriteSides(writer, polygonFigure as PolygonFigure);
+            WriteColor(writer, polygonFigure);
             WriteEndElement(writer, polygonFigure as PolygonFigure);
         }
     }

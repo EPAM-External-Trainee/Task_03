@@ -45,7 +45,7 @@ namespace Task.FileWork.Models
             }
         }
 
-        public void WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, StreamWriter writer)
+        public bool WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, StreamWriter writer)
         {
             using (writer = new StreamWriter(path))
             {
@@ -68,6 +68,7 @@ namespace Task.FileWork.Models
                     }
                 }
                 writer.WriteLine("</Figures>");
+                return true;
             }
         }
     }

@@ -30,9 +30,21 @@ namespace Task.MyParsers.Abstract
 
         protected Colors GetColorFromXml(XmlReader reader)
         {
-            reader.ReadToFollowing("Color");
-            Enum.TryParse(reader.ReadElementContentAsString(), out Colors color);
-            return color;
+            switch (reader.NodeType)
+            {
+                case XmlNodeType.Whitespace:
+                    {
+                        reader.ReadToFollowing("Color");
+                        Enum.TryParse(reader.ReadElementContentAsString(), out Colors color);
+                        return color;
+                    }
+
+                default:
+                    {
+                        Enum.TryParse(reader.ReadElementContentAsString(), out Colors color);
+                        return color;
+                    }
+            }
         }
 
         protected Colors GetColorFromXml(XElement element)

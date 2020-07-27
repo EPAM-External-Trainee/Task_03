@@ -6,7 +6,7 @@ namespace Task.FileWork.Interfaces
 {
     public interface IStreamFileWorker
     {
-        void WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, StreamWriter writer);
+        bool WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, StreamWriter writer);
 
         IEnumerable<IFigure> ReadFiguresFromXML(string path, StreamReader reader);
     }

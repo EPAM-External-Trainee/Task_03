@@ -17,7 +17,7 @@ namespace TaskUnitTests.BoxTests
     {
         private static readonly List<IFigure> _figures = new List<IFigure>()
         {
-            new PaperCircle(10, Colors.Black),
+            new PaperCircle(10, Colors.White),
             new PaperRectangle(new List<double>{6, 9}, Colors.Green),
             new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
             new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue),
@@ -26,7 +26,9 @@ namespace TaskUnitTests.BoxTests
             new FilmSquare(new List<double>{7, 7, 7, 7}),
             new FilmTriangle(new List<double>{9, 10, 11}),
         };
-        private static readonly string pathToXmlFile = @"..\..\Resources\Figures.xml";
+        private static readonly string pathToXmlFileForAllFigures = @"..\..\Resources\Figures.xml";
+        private static readonly string pathToXmlFileForPaperFigures = @"..\..\Resources\PaperFigures.xml";
+        private static readonly string pathToXmlFileForFilmFigures = @"..\..\Resources\FilmFigures.xml";
 
         [ClassInitialize]
         public static void TestFixtureSetup(TestContext testContext)
@@ -51,14 +53,14 @@ namespace TaskUnitTests.BoxTests
         [TestMethod]
         public void AddFigure_NotUniqFigure_ArgumentException()
         {
-            PaperCircle paperCircle = new PaperCircle(10, Colors.Black);
+            PaperCircle paperCircle = new PaperCircle(10, Colors.White);
             Assert.ThrowsException<ArgumentException>(() => Box.AddFigure(paperCircle));
         }
 
         [TestMethod]
         public void ViewFigure_NumberInRange_PositiveTestResult()
         {
-            PaperCircle paperCircle = new PaperCircle(10, Colors.Black);
+            PaperCircle paperCircle = new PaperCircle(10, Colors.White);
             Assert.AreEqual(paperCircle, Box.ViewFigure(1));
         }
 
@@ -100,7 +102,7 @@ namespace TaskUnitTests.BoxTests
         [TestMethod]
         public void FindEqualFigure_DesiredFigureInBox_PositiveTestResult()
         {
-            PaperCircle paperCircle = new PaperCircle(10, Colors.Black);
+            PaperCircle paperCircle = new PaperCircle(10, Colors.White);
             Assert.AreEqual(paperCircle, Box.FindEqualFigure(paperCircle));
         }
 
@@ -134,7 +136,7 @@ namespace TaskUnitTests.BoxTests
         {
             List<IFigure> expectedFigures = new List<IFigure>
             {
-                new PaperCircle(10, Colors.Black),
+                new PaperCircle(10, Colors.White),
                 new FilmCircle(5)
             };
 
@@ -159,7 +161,7 @@ namespace TaskUnitTests.BoxTests
         {
             List<IFigure> expectedFigures = new List<IFigure>
             {
-                new PaperCircle(10, Colors.Black),
+                new PaperCircle(10, Colors.White),
                 new PaperRectangle(new List<double>{6, 9}, Colors.Green),
                 new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
                 new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
@@ -169,11 +171,130 @@ namespace TaskUnitTests.BoxTests
         }
 
         [TestMethod]
+        public void WriteAllFiguresToXml_UsingXmlWriter_PositiveTestResult()
+        {
+            using (XmlWriter writer = null)
+            {
+                Box.WriteFiguresFromBoxToXML(pathToXmlFileForAllFigures, FigureMaterials.PaperAndFilm, writer);
+                using (StreamReader reader = null)
+                {
+                    CollectionAssert.AreEqual(_figures, Box.ReadAllFiguresFromXML(pathToXmlFileForAllFigures, reader).ToList());
+                }
+            }
+        }
+
+        [TestMethod]
+        public void WritePaperFiguresToXml_UsingXmlWriter_PositiveTestResult()
+        {
+            List<IFigure> expectedFigures = new List<IFigure>
+            {
+                new PaperCircle(10, Colors.White),
+                new PaperRectangle(new List<double>{6, 9}, Colors.Green),
+                new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
+                new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
+            };
+
+            using (XmlWriter writer = null)
+            {
+                Box.WriteFiguresFromBoxToXML(pathToXmlFileForPaperFigures, FigureMaterials.Paper, writer);
+                using (StreamReader reader = null)
+                {
+                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForPaperFigures, reader).ToList());
+                }
+            }
+        }
+
+        [TestMethod]
+        public void WriteFilmFiguresToXml_UsingXmlWriter_PositiveTestResult()
+        {
+            List<IFigure> expectedFigures = new List<IFigure>
+            {
+                new FilmCircle(5),
+                new FilmRectangle(new List<double>{10, 20}),
+                new FilmSquare(new List<double>{7, 7, 7, 7}),
+                new FilmTriangle(new List<double>{9, 10, 11})
+            };
+
+            using (XmlWriter writer = null)
+            {
+                Box.WriteFiguresFromBoxToXML(pathToXmlFileForFilmFigures, FigureMaterials.Film, writer);
+                using (StreamReader reader = null)
+                {
+                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForFilmFigures, reader).ToList());
+                }
+            }
+        }
+
+        [TestMethod]
+        public void WriteAllFiguresToXml_UsingStreamWriter_PositiveTestResult()
+        {
+            using (StreamWriter writer = null)
+            {
+                Box.WriteFiguresFromBoxToXML(pathToXmlFileForAllFigures, FigureMaterials.PaperAndFilm, writer);
+                using (XmlReader reader = null)
+                {
+                    CollectionAssert.AreEqual(_figures, Box.ReadAllFiguresFromXML(pathToXmlFileForAllFigures, reader).ToList());
+                }
+            }
+        }
+
+        [TestMethod]
+        public void WriteFilmFiguresToXml_UsingStreamWriter_PositiveTestResult()
+        {
+            List<IFigure> expectedFigures = new List<IFigure>
+            {
+                new FilmCircle(5),
+                new FilmRectangle(new List<double>{10, 20}),
+                new FilmSquare(new List<double>{7, 7, 7, 7}),
+                new FilmTriangle(new List<double>{9, 10, 11})
+            };
+
+            using (StreamWriter writer = null)
+            {
+                Box.WriteFiguresFromBoxToXML(pathToXmlFileForFilmFigures, FigureMaterials.Film, writer);
+                using (XmlReader reader = null)
+                {
+                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForFilmFigures, reader).ToList());
+                }
+            }
+        }
+
+        [TestMethod]
+        public void WritePaperFiguresToXml_UsingStreamWriter_PositiveTestResult()
+        {
+            List<IFigure> expectedFigures = new List<IFigure>
+            {
+                new PaperCircle(10, Colors.White),
+                new PaperRectangle(new List<double>{6, 9}, Colors.Green),
+                new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
+                new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
+            };
+            using (StreamWriter writer = null)
+            {
+                Box.WriteFiguresFromBoxToXML(pathToXmlFileForPaperFigures, FigureMaterials.Paper, writer);
+                using (XmlReader reader = null)
+                {
+                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForPaperFigures, reader).ToList());
+                }
+            }
+        }
+
+        [TestMethod]
         public void ReadAllFiguresFromXML_UsingXmlReader_PositiveTestResult()
         {
             using (XmlReader reader = null)
             {
-                CollectionAssert.AreEqual(_figures, Box.ReadAllFiguresFromXML(pathToXmlFile, reader).ToList());
+                var tmp = Box.ReadAllFiguresFromXML(pathToXmlFileForAllFigures, reader).ToList();
+                CollectionAssert.AreEqual(_figures, Box.ReadAllFiguresFromXML(pathToXmlFileForAllFigures, reader).ToList());
+            }
+        }
+
+        [TestMethod]
+        public void ReadAllFiguresFromXML_UsingStreamReader_PositiveTestResult()
+        {
+            using (StreamReader reader = null)
+            {
+                CollectionAssert.AreEqual(_figures, Box.ReadAllFiguresFromXML(pathToXmlFileForAllFigures, reader).ToList());
             }
         }
     }

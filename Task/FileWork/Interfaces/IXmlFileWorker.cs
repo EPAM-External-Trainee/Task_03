@@ -6,7 +6,7 @@ namespace Task.FileWork.Interfaces
 {
     public interface IXmlFileWorker
     {
-        void WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, XmlWriter writer);
+        bool WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, XmlWriter writer);
 
         IEnumerable<IFigure> ReadFiguresFromXML(string path, XmlReader reader);
     }
