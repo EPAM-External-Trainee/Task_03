@@ -25,13 +25,13 @@ namespace Task.Figures.Models.PaperFigures
 
         public void PaintOverFigure(Colors color)
         {
-            if (IsPainted)
+            if (!IsPainted)
             {
                 throw new IsPaintedException("You can only paint over a shape once.", Color);
             }
 
             Color = color;
-            IsPainted = true;
+            IsPainted = false;
         }
 
         public override bool Equals(object obj) => obj is PaperCircle circle && base.Equals(obj) && Radius == circle?.Radius && Color == circle?.Color && IsPainted == circle?.IsPainted;

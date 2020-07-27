@@ -18,7 +18,7 @@ namespace Task.Figures.Abstract.AbstractModels
             return Math.Round(Math.Sqrt(pmr * (pmr - Sides[0]) * (pmr - Sides[1]) * (pmr - Sides[2])), 2);
         }
 
-        public override double GetPerimeter() => Sides[0] + Sides[1] + Sides[2];
+        public override double GetPerimeter() => Math.Round((Sides[0] + Sides[1] + Sides[2]) / 2, 2);
 
         public override bool Equals(object obj) => obj is Triangle && Sides.SequenceEqual((obj as Triangle)?.Sides);
 
