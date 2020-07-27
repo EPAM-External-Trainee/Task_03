@@ -10,7 +10,7 @@ using Task.MyExceptions.Models;
 namespace TaskUnitTests.FiguresTests
 {
     [TestClass]
-    public class FiguresTests
+    public class FiguresTest
     {
         [TestMethod, Description("")]
         public void PaperTriangle_CutFigureSmallerOriginal_PositiveTestResult()
