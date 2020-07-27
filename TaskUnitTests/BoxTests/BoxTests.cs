@@ -269,6 +269,7 @@ namespace TaskUnitTests.BoxTests
                 new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
                 new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
             };
+
             using (StreamWriter writer = null)
             {
                 Box.WriteFiguresFromBoxToXML(pathToXmlFileForPaperFigures, FigureMaterials.Paper, writer);

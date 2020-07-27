@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="BoxTests\BoxTests.cs" />
     <Compile Include="FiguresTests\FiguresTest.cs" />
-    <Compile Include="FileWorkerTests\FileWorkerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
