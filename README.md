@@ -29,7 +29,7 @@
 14. upload all shapes to the box from an XML file using XmlReader;
 * 1.15. Requirements to implement:
 1. material and shape may not be fields of the class;
-2. cut a shape from another shape to implement as resp. designer;
+2. cut a shape from another shape to implement as resp. constructor;
 3. use Enum features with color;
 4. the impossibility of cutting implement as appropriate the exception;
 5. the inability to color the shape is implemented as a corresponding exception;
