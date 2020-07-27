@@ -5,10 +5,22 @@ using Task.MyExceptions.Models;
 
 namespace Task.Figures.Abstract.BaseAbstract
 {
+    /// <summary>
+    /// Class that describes a polygon figure
+    /// </summary>
     public abstract class PolygonFigure : Figure
     {
+        /// <summary>
+        /// Instance constructor for creating a polygon figure figure through the sides
+        /// </summary>
+        /// <param name="sides">Polygon figure sides</param>
         protected PolygonFigure(IEnumerable<double> sides) => Sides = sides.ToList();
 
+        /// <summary>
+        /// Instance constructor for creating a polygon figure figure through the sides and another figure
+        /// </summary>
+        /// <param name="sides">Polygon figure sides</param>
+        /// <param name="cutOutFigure">Cut out the figure</param>
         protected PolygonFigure(IEnumerable<double> sides, IFigure cutOutFigure)
         {
             Sides = sides.ToList();
@@ -18,6 +30,9 @@ namespace Task.Figures.Abstract.BaseAbstract
             }
         }
 
+        /// <summary>
+        /// Polygon figure sides
+        /// </summary>
         public List<double> Sides { get; protected set; }
 
         public override bool Equals(object obj) => obj is PolygonFigure figure && Sides.SequenceEqual(figure?.Sides);
