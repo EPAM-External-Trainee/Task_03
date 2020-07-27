@@ -17,5 +17,9 @@ namespace Task.Figures.Abstract.BaseAbstract
         }
 
         public double Radius { get; protected set; }
+
+        public override bool Equals(object obj) => obj is CircularFigure figure && Radius == figure?.Radius;
+
+        public override int GetHashCode() => 598075851 + Radius.GetHashCode();
     }
 }
