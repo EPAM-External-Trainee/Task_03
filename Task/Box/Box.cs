@@ -39,7 +39,7 @@ namespace Task.Box
         public static List<IFigure> Figures { get; private set; }
 
         /// <summary>
-        /// The total area of the figures in the box
+        /// Calculating the total area of the figures in the box
         /// </summary>
         public static double TotalArea
         {
@@ -57,7 +57,7 @@ namespace Task.Box
         }
 
         /// <summary>
-        /// The total perimeter of the figures in the box
+        /// Calculating the total perimeter of the figures in the box
         /// </summary>
         public static double TotalPerimeter
         {
@@ -217,10 +217,10 @@ namespace Task.Box
         public static void WriteFiguresFromBoxToXML(string path, FigureMaterials material, XmlWriter writer) => _xmlFileWorker.WriteFiguresFromBoxToXML(path, GetFigruesForSpecifiedMaterial(material), writer);
 
         /// <summary>
-        /// 
+        /// Get figures that were made from the selected material
         /// </summary>
-        /// <param name="material"></param>
-        /// <returns></returns>
+        /// <param name="material">The material that figures are made of</param>
+        /// <returns>Figures collection</returns>
         private static IEnumerable<IFigure> GetFigruesForSpecifiedMaterial(FigureMaterials material)
         {
             switch (material)

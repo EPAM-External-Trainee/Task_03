@@ -5,24 +5,40 @@ using Task.MyExceptions.Models;
 
 namespace Task.Figures.Models.PaperFigures
 {
+    /// <summary>
+    /// Class that describes a circle made of paper
+    /// </summary>
     public class PaperCircle : Circle, IPaperFigure
     {
+        /// <summary>
+        /// Instance constructor to initialize a paper circle through a radius and color.
+        /// </summary>
+        /// <param name="radius">Paper circle radius</param>
+        /// <param name="color">Paper circle color</param>
         public PaperCircle(double radius, Colors color) : base(radius)
         {
             Color = color;
             IsPainted = true;
         }
 
+        /// <summary>
+        /// Instance constructor to initialize a paper circle through a radius and and another paper figure.
+        /// </summary>
+        /// <param name="radius">Paper circle radius</param>
+        /// <param name="cutOutPaperFigure">Cut out the figure</param>
         public PaperCircle(double radius, IPaperFigure cutOutPaperFigure) : base(radius, cutOutPaperFigure)
         {
             Color = cutOutPaperFigure.Color;
             IsPainted = true;
         }
 
+        /// <inheritdoc cref="IPaperFigure.Color"/>
         public Colors Color { get; set; }
 
+        /// <inheritdoc cref="IPaperFigure.IsPainted"/>
         public bool IsPainted { get; set; }
 
+        /// <inheritdoc cref="IPaperFigure.PaintOverFigure(Colors)"/>
         public void PaintOverFigure(Colors color)
         {
             if (!IsPainted)
