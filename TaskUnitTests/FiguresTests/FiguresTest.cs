@@ -39,7 +39,7 @@ namespace TaskUnitTests.FiguresTests
         public void GetPerimeter_PositiveTestResult()
         {
             FilmCircle filmCircle = new FilmCircle(10);
-            Assert.IsTrue(62.83 == filmCircle.GetPerimeter());
+            Assert.IsTrue(62.83d == filmCircle.GetPerimeter());
         }
 
         [TestMethod, Description("")]
