@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>b22e8b45-0411-4860-abcc-f390134b8800</ProjectGuid>
+    <ProjectGuid>{B22E8B45-0411-4860-ABCC-F390134B8800}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Task</RootNamespace>
@@ -31,24 +31,58 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Box\Box.cs" />
+    <Compile Include="Enums\Colors.cs" />
+    <Compile Include="Enums\FigureMaterials.cs" />
+    <Compile Include="Enums\FigureTypes.cs" />
+    <Compile Include="Figures\Abstract\AbstractModels\Circle.cs" />
+    <Compile Include="Figures\Abstract\AbstractModels\Rectangle.cs" />
+    <Compile Include="Figures\Abstract\AbstractModels\Square.cs" />
+    <Compile Include="Figures\Abstract\AbstractModels\Triangle.cs" />
+    <Compile Include="Figures\Abstract\BaseAbstract\CircularFigure.cs" />
+    <Compile Include="Figures\Abstract\BaseAbstract\Figure.cs" />
+    <Compile Include="Figures\Abstract\BaseAbstract\PolygonFigure.cs" />
+    <Compile Include="Figures\Interfaces\IFigure.cs" />
+    <Compile Include="Figures\Interfaces\IFilmFigure.cs" />
+    <Compile Include="Figures\Interfaces\IPaperFigure.cs" />
+    <Compile Include="Figures\Models\FilmFigures\FilmCircle.cs" />
+    <Compile Include="Figures\Models\FilmFigures\FilmRectangle.cs" />
+    <Compile Include="Figures\Models\FilmFigures\FilmSquare.cs" />
+    <Compile Include="Figures\Models\FilmFigures\FilmTriangle.cs" />
+    <Compile Include="Figures\Models\PaperFigures\PaperCircle.cs" />
+    <Compile Include="Figures\Models\PaperFigures\PaperRectangle.cs" />
+    <Compile Include="Figures\Models\PaperFigures\PaperSquare.cs" />
+    <Compile Include="Figures\Models\PaperFigures\PaperTriangle.cs" />
+    <Compile Include="FileWork\Interfaces\IStreamFileWorker.cs" />
+    <Compile Include="FileWork\Interfaces\IXmlFileWorker.cs" />
+    <Compile Include="FileWork\Models\StreamWorker.cs" />
+    <Compile Include="FileWork\Models\XmlWorker.cs" />
+    <Compile Include="MyExceptions\Interfaces\IMyException.cs" />
+    <Compile Include="MyExceptions\Models\IsPaintedException.cs" />
+    <Compile Include="MyExceptions\Models\OutOfAreaException.cs" />
+    <Compile Include="MyParsers\Abstract\XmlOperations.cs" />
+    <Compile Include="MyParsers\Interfaces\IFilmFiguresParser.cs" />
+    <Compile Include="MyParsers\Interfaces\IFilmXmlElementWriter.cs" />
+    <Compile Include="MyParsers\Interfaces\IPaperFiguresParser.cs" />
+    <Compile Include="MyParsers\Interfaces\IPaperXmlElementWriter.cs" />
+    <Compile Include="MyParsers\Models\XmlFilmFiguresParser.cs" />
+    <Compile Include="MyParsers\Models\XmlFilmFiguresWriter.cs" />
+    <Compile Include="MyParsers\Models\XmlPaperFiguresParser.cs" />
+    <Compile Include="MyParsers\Models\XmlPaperFiguresWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Figures.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

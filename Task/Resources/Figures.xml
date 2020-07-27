@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Figures>
+	<PaperCircle>
+		<Radius>10</Radius>
+		<Color>White</Color>
+	</PaperCircle>
+	<PaperRectangle>
+		<Sides>6 9</Sides>
+		<Color>Green</Color>
+	</PaperRectangle>
+	<PaperSquare>
+		<Sides>4 4 4 4</Sides>
+		<Color>Red</Color>
+	</PaperSquare>
+	<PaperTriangle>
+		<Sides>6 7 8</Sides>
+		<Color>Blue</Color>
+	</PaperTriangle>
+	<FilmCircle>
+		<Radius>5</Radius>
+	</FilmCircle>
+	<FilmRectangle>
+		<Sides>10 20</Sides>
+	</FilmRectangle>
+	<FilmSquare>
+		<Sides>7 7 7 7</Sides>
+	</FilmSquare>
+	<FilmTriangle>
+		<Sides>9 10 11</Sides>
+	</FilmTriangle>
+</Figures>
