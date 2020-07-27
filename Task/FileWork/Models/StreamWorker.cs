@@ -12,6 +12,9 @@ using Task.MyParsers.Models;
 
 namespace Task.FileWork.Models
 {
+    /// <summary>
+    /// Class for working with xml file via read and write through StreamReader and StreamWriter
+    /// </summary>
     public class StreamWorker : IStreamFileWorker
     {
         private static readonly IPaperFiguresParser _paperFiguresParser = new XmlPaperFiguresParser();
@@ -20,6 +23,7 @@ namespace Task.FileWork.Models
         private static readonly IFilmXmlElementWriter _filmXmlElementWriter = new XmlFilmFiguresWriter();
         private const string _xmlHeader = "<?xml version =\"1.0\" encoding=\"utf-8\" ?>";
 
+        /// <inheritdoc cref="IStreamFileWorker.ReadFiguresFromXML(string, StreamReader)"/>
         public IEnumerable<IFigure> ReadFiguresFromXML(string path, StreamReader reader)
         {
             using (reader = new StreamReader(path))
@@ -45,6 +49,7 @@ namespace Task.FileWork.Models
             }
         }
 
+        /// <inheritdoc cref="IStreamFileWorker.WriteFiguresFromBoxToXML(string, IEnumerable{IFigure}, StreamWriter)"/>
         public bool WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, StreamWriter writer)
         {
             using (writer = new StreamWriter(path))

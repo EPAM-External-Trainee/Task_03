@@ -10,6 +10,9 @@ using Task.MyParsers.Models;
 
 namespace Task.FileWork.Models
 {
+    /// <summary>
+    /// Class for working with xml file via read and write through XmlReader and XmlWriter
+    /// </summary>
     public class XmlWorker : IXmlFileWorker
     {
         private static readonly IPaperFiguresParser _paperFiguresParser = new XmlPaperFiguresParser();
@@ -17,6 +20,7 @@ namespace Task.FileWork.Models
         private static readonly IFilmFiguresParser _filmFiguresParser = new XmlFilmFiguresParser();
         private static readonly IFilmXmlElementWriter _filmXmlElementWriter = new XmlFilmFiguresWriter();
 
+        /// <inheritdoc cref="IXmlFileWorker.ReadFiguresFromXML(string, XmlReader)"/>
         public IEnumerable<IFigure> ReadFiguresFromXML(string path, XmlReader reader)
         {
             List<IFigure> figures = new List<IFigure>();
@@ -44,6 +48,7 @@ namespace Task.FileWork.Models
             return figures;
         }
 
+        /// <inheritdoc cref="IXmlFileWorker.WriteFiguresFromBoxToXML(string, IEnumerable{IFigure}, XmlWriter)"/>
         public bool WriteFiguresFromBoxToXML(string path, IEnumerable<IFigure> figures, XmlWriter writer)
         {
             using (writer = XmlWriter.Create(path))
