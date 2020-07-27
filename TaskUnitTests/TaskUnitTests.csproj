@@ -47,11 +47,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoxTests\UnitTest1.cs" />
+    <Compile Include="BoxTests\BoxTests.cs" />
     <Compile Include="FiguresTests\FiguresTest.cs" />
-    <Compile Include="FileWorkerTests\UnitTest1.cs" />
+    <Compile Include="FileWorkerTests\FileWorkerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -29,7 +29,7 @@ namespace Task.Box
                 {
                     double result = 0;
                     Figures.ForEach(f => result += f.GetArea());
-                    return result;
+                    return Math.Round(result, 2);
                 }
 
                 throw new Exception("The box is empty");
@@ -44,7 +44,7 @@ namespace Task.Box
                 {
                     double result = 0;
                     Figures.ForEach(f => result += f.GetPerimeter());
-                    return result;
+                    return Math.Round(result, 2);
                 }
 
                 throw new Exception("The box is empty");
@@ -60,7 +60,8 @@ namespace Task.Box
                 throw new ArgumentException("Exceeded the allowed number of figures in the box");
             }
 
-            Figures = figures.ToList();
+            Figures.Clear();
+            figures.ToList().ForEach(f => AddFigure(f));
         }
 
         public static void AddFigure(IFigure figure)
@@ -95,6 +96,7 @@ namespace Task.Box
             if (number >= 1 && number <= Figures.Count)
             {
                 Figures[--number] = figure;
+                return;
             }
 
             throw new IndexOutOfRangeException("The specified index is out of the allowed range");
