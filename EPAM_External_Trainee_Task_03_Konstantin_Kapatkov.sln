@@ -11,11 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task03", "Task03", "{A16135
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task03_UnitTests", "Task03_UnitTests", "{C60CCE7F-4D33-4765-A053-233128C2FD2B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{23EFD06A-DC7C-4696-95B0-03E26EDD0A41}"
-	ProjectSection(SolutionItems) = preProject
-		Task\Resources\Figures.xml = Task\Resources\Figures.xml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,7 +32,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B22E8B45-0411-4860-ABCC-F390134B8800} = {A16135C0-E6BD-4FD5-BA81-D961FBAF8EBC}
 		{13FE7826-BEC7-4DB2-B97F-640A11AAD144} = {C60CCE7F-4D33-4765-A053-233128C2FD2B}
-		{23EFD06A-DC7C-4696-95B0-03E26EDD0A41} = {C60CCE7F-4D33-4765-A053-233128C2FD2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EE45BFD-98D4-4044-940C-2FA989F25018}
