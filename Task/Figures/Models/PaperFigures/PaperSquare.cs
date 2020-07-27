@@ -35,7 +35,7 @@ namespace Task.Figures.Models.PaperFigures
             IsPainted = true;
         }
 
-        public override bool Equals(object obj) => obj is PaperSquare square && base.Equals(obj) && IsPainted == square.IsPainted && Color == square.Color;
+        public override bool Equals(object obj) => obj is PaperSquare square && base.Equals(obj) && IsPainted == square?.IsPainted && Color == square?.Color;
 
         public override int GetHashCode()
         {
