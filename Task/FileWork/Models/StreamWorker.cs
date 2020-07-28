@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Task.Enums;
-using Task.Figures.Abstract.BaseAbstract;
 using Task.Figures.Interfaces;
 using Task.FileWork.Interfaces;
 using Task.MyParsers.Interfaces;

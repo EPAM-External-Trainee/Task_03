@@ -11,29 +11,16 @@ namespace Task.Figures.Abstract.AbstractModels
     /// </summary>
     public abstract class Square : PolygonFigure
     {
-        /// <summary>
-        /// Instance constructor for creating a square through the sides
-        /// </summary>
-        /// <param name="sides">Square sides</param>
+        /// <inheritdoc cref="PolygonFigure(IEnumerable{double})"/>
         protected Square(IEnumerable<double> sides) : base(sides) { }
 
-        /// <summary>
-        /// Instance constructor for creating a square through the sides and another figure
-        /// </summary>
-        /// <param name="sides">Square sides</param>
-        /// <param name="cutOutFigure">Cut out the figure</param>
+        /// <inheritdoc cref="PolygonFigure(IEnumerable{double}, IFigure)"/>
         protected Square(IEnumerable<double> sides, IFigure cutOutFigure) : base(sides, cutOutFigure) { }
 
-        /// <summary>
-        /// Сalculation of area
-        /// </summary>
-        /// <returns>Area</returns>
+        /// <inheritdoc cref="Figure.GetArea"/>
         public override double GetArea() => Math.Round(Sides[0] * Sides[0], 2);
 
-        /// <summary>
-        /// Сalculation of perimeter
-        /// </summary>
-        /// <returns>Perimeter</returns>
+        /// <inheritdoc cref="Figure.GetPerimeter"/>
         public override double GetPerimeter() => Math.Round(4 * Sides[0], 2);
 
         public override bool Equals(object obj) => obj is Square && Sides.SequenceEqual((obj as Square)?.Sides);

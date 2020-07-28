@@ -7,16 +7,10 @@ namespace Task.Figures.Abstract.BaseAbstract
     /// </summary>
     public abstract class Figure : IFigure
     {
-        /// <summary>
-        /// Сalculation of area
-        /// </summary>
-        /// <returns>Area</returns>
+        /// <inheritdoc cref="IFigure.GetArea"/>
         public abstract double GetArea();
 
-        /// <summary>
-        /// Сalculation of perimeter
-        /// </summary>
-        /// <returns>Perimeter</returns>
+        /// <inheritdoc cref="IFigure.GetPerimeter"/>
         public abstract double GetPerimeter();
 
         public override string ToString() => $"Figure type: {GetType().Name}; Perimeter: {GetPerimeter()}; Area: {GetArea()};";

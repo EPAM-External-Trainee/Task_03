@@ -21,11 +21,7 @@ namespace Task.Figures.Models.PaperFigures
             IsPainted = true;
         }
 
-        /// <summary>
-        /// Instance constructor to initialize a paper circle through a radius and and another paper figure.
-        /// </summary>
-        /// <param name="radius">Paper circle radius</param>
-        /// <param name="cutOutPaperFigure">Cut out the figure</param>
+        /// <inheritdoc cref="Circle(double, IFigure)"/>
         public PaperCircle(double radius, IPaperFigure cutOutPaperFigure) : base(radius, cutOutPaperFigure)
         {
             Color = cutOutPaperFigure.Color;

@@ -8,17 +8,10 @@ namespace Task.Figures.Models.FilmFigures
     /// </summary>
     public class FilmCircle : Circle, IFilmFigure
     {
-        /// <summary>
-        /// Instance constructor to initialize a film circle through a radius.
-        /// </summary>
-        /// <param name="radius"></param>
+        /// <inheritdoc cref="Circle(double)"/>
         public FilmCircle(double radius) : base(radius) { }
 
-        /// <summary>
-        /// Instance constructor to initialize a film circle through a radius and another figure
-        /// </summary>
-        /// <param name="radius">Film circle radius</param>
-        /// <param name="cutOutFilmFigure">Cut out the figure</param>
+        /// <inheritdoc cref="Circle(double, IFigure)"/>
         public FilmCircle(double radius, IFilmFigure cutOutFilmFigure) : base(radius, cutOutFilmFigure) { }
 
         public override bool Equals(object obj) => obj is FilmCircle circle && base.Equals(obj) && Radius == circle?.Radius;

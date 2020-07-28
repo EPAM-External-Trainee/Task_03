@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml;
 using Task.Enums;
-using Task.Figures.Abstract.BaseAbstract;
 using Task.Figures.Interfaces;
 using Task.FileWork.Interfaces;
 using Task.MyParsers.Interfaces;

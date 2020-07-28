@@ -9,29 +9,16 @@ namespace Task.Figures.Abstract.AbstractModels
     /// </summary>
     public abstract class Circle : CircularFigure
     {
-        /// <summary>
-        /// Instance constructor for creating a circle through a radius
-        /// </summary>
-        /// <param name="radius">Circle radius</param>
+        /// <inheritdoc cref="CircularFigure(double)"/>
         protected Circle(double radius) : base(radius) { }
 
-        /// <summary>
-        /// Instance constructor for creating a circle through a radius and another figure
-        /// </summary>
-        /// <param name="radius">Radius</param>
-        /// <param name="cutOutFigure">Cut out the figure</param>
+        /// <inheritdoc cref="CircularFigure(double, IFigure)"/>
         protected Circle(double radius, IFigure cutOutFigure) : base(radius, cutOutFigure) { }
 
-        /// <summary>
-        /// Сalculation of perimeter
-        /// </summary>
-        /// <returns>Perimeter</returns>
+        /// <inheritdoc cref="Figure.GetPerimeter"/>
         public override double GetPerimeter() => Math.Round(2 * Math.PI * Radius, 2);
 
-        /// <summary>
-        /// Сalculation of area
-        /// </summary>
-        /// <returns>Area</returns>
+        /// <inheritdoc cref="Figure.GetArea"/>
         public override double GetArea() => Math.Round(Math.PI * Radius * Radius, 2);
 
         public override bool Equals(object obj) => obj is Circle circle && Radius == circle?.Radius;

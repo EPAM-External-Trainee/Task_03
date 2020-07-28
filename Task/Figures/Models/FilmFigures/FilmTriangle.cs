@@ -10,17 +10,10 @@ namespace Task.Figures.Models.FilmFigures
     /// </summary>
     public class FilmTriangle : Triangle, IFilmFigure
     {
-        /// <summary>
-        /// Instance constructor to initialize a film triangle through the sides.
-        /// </summary>
-        /// <param name="sides">Film triangle sides</param>
+        /// <inheritdoc cref="Triangle(IEnumerable{double})"/>
         public FilmTriangle(IEnumerable<double> sides) : base(sides) { }
 
-        /// <summary>
-        /// Instance constructor to initialize a film triangle through the sides and another figure.
-        /// </summary>
-        /// <param name="sides">Film triangle sides</param>
-        /// <param name="cutOutFilmFigure">Cut out the figure</param>
+        /// <inheritdoc cref="Triangle(IEnumerable{double}, IFigure)"/>
         public FilmTriangle(IEnumerable<double> sides, IFilmFigure cutOutFilmFigure) : base(sides, cutOutFilmFigure) { }
 
         public override bool Equals(object obj) => obj is FilmTriangle triangle && base.Equals(obj) && Sides.SequenceEqual(triangle?.Sides);

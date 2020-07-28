@@ -22,11 +22,7 @@ namespace Task.Figures.Models.PaperFigures
             IsPainted = true;
         }
 
-        /// <summary>
-        /// Instance constructor to initialize a paper rectangle through the sides and another paper figure.
-        /// </summary>
-        /// <param name="sides">Paper rectangle sides</param>
-        /// <param name="cutOutPaperFigure">Cut out the figure</param>
+        /// <inheritdoc cref="Rectangle(IEnumerable{double}, IFigure)"/>
         public PaperRectangle(IEnumerable<double> sides, IPaperFigure cutOutPaperFigure) : base(sides, cutOutPaperFigure)
         {
             Color = cutOutPaperFigure.Color;
