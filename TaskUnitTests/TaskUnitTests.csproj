@@ -51,7 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoxTests\BoxTests.cs" />
-    <Compile Include="FiguresTests\FiguresTest.cs" />
+    <Compile Include="FiguresTests\FilmFigureTests\FilmCircleUnitTest.cs" />
+    <Compile Include="FiguresTests\FilmFigureTests\FilmRectangleUnitTest.cs" />
+    <Compile Include="FiguresTests\FilmFigureTests\FilmSquareUnitTest.cs" />
+    <Compile Include="FiguresTests\FilmFigureTests\FilmTriangleUnitTest.cs" />
+    <Compile Include="FiguresTests\PaperFigureTests\PaperCircleUnitTest.cs" />
+    <Compile Include="FiguresTests\PaperFigureTests\PaperRectangleUnitTest.cs" />
+    <Compile Include="FiguresTests\PaperFigureTests\PaperSquareUnitTest.cs" />
+    <Compile Include="FiguresTests\PaperFigureTests\PaperTriangleUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

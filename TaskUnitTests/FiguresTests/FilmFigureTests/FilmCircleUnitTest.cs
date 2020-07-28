@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Task.Enums;
-using Task.Figures.Abstract.BaseAbstract;
 using Task.Figures.Models.FilmFigures;
 using Task.Figures.Models.PaperFigures;
 using Task.MyExceptions.Models;
 
-namespace TaskUnitTests.FiguresTests
+namespace TaskUnitTests.FiguresTests.FilmFigureTests
 {
     [TestClass]
-    public class FiguresTest
+    public class FilmCircleUnitTest
     {
         [TestMethod, Description("")]
         public void PaperTriangle_CutFigureSmallerOriginal_PositiveTestResult()

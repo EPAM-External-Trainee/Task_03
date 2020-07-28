@@ -12,6 +12,9 @@ using Task.Figures.Models.PaperFigures;
 
 namespace TaskUnitTests.BoxTests
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class BoxTests
     {
@@ -42,7 +45,7 @@ namespace TaskUnitTests.BoxTests
             Box.InitializeFigures(_figures);
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void AddFigure_UniqFigure_PositiveTestResult()
         {
             PaperCircle paperCircle = new PaperCircle(5, Colors.Blue);
@@ -50,27 +53,27 @@ namespace TaskUnitTests.BoxTests
             Assert.AreEqual(paperCircle, Box.ViewFigure(Box.CurrentFiguresCount));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void AddFigure_NotUniqFigure_ArgumentException()
         {
             PaperCircle paperCircle = new PaperCircle(10, Colors.White);
             Assert.ThrowsException<ArgumentException>(() => Box.AddFigure(paperCircle));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ViewFigure_NumberInRange_PositiveTestResult()
         {
             PaperCircle paperCircle = new PaperCircle(10, Colors.White);
             Assert.AreEqual(paperCircle, Box.ViewFigure(1));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ViewFigure_NumberOutOfRange_IndexOutOfRangeException()
         {
             Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ViewFigure(21));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ExtractFigure_NumberInRange_PositiveTestResult()
         {
             int figuresCountBeforeExtract = Box.CurrentFiguresCount;
@@ -78,13 +81,13 @@ namespace TaskUnitTests.BoxTests
             Assert.IsTrue(figuresCountBeforeExtract > Box.CurrentFiguresCount);
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ExtractFigure_NumberOutOfRange_IndexOutOfRangeException()
         {
             Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ExtractFigure(13));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ReplaceFigure__NumberInRange_PositiveTestResult()
         {
             PaperRectangle paperRectangle = new PaperRectangle(new List<double> { 6, 9 }, Colors.Green);
@@ -92,46 +95,46 @@ namespace TaskUnitTests.BoxTests
             Assert.AreEqual(paperRectangle, Box.ViewFigure(1));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ReplaceFigure__NumberOutOfRange_IndexOutOfRangeException()
         {
             PaperRectangle paperRectangle = new PaperRectangle(new List<double> { 6, 9 }, Colors.Green);
             Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ReplaceFigure(66, paperRectangle));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void FindEqualFigure_DesiredFigureInBox_PositiveTestResult()
         {
             PaperCircle paperCircle = new PaperCircle(10, Colors.White);
             Assert.AreEqual(paperCircle, Box.FindEqualFigure(paperCircle));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void FindEqualFigure_DesiredFigureOutOfBox_Null()
         {
             PaperCircle paperCircle = new PaperCircle(10, Colors.Green);
             Assert.IsNull(Box.FindEqualFigure(paperCircle));
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void CurrentFiguresCount_PositiveTestResult()
         {
             Assert.IsTrue(Box.CurrentFiguresCount == 8);
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void TotalArea_PositiveTestResult()
         {
             Assert.IsTrue(774.46d == Box.TotalArea);
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void TotalPerimeter_PositiveTestResult()
         {
             Assert.IsTrue(671.75d == Box.TotalPerimeter);
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void GetAllCircles_CirclesInBox_PositiveTestResult()
         {
             List<IFigure> expectedFigures = new List<IFigure>
@@ -143,7 +146,7 @@ namespace TaskUnitTests.BoxTests
             CollectionAssert.AreEqual(expectedFigures, Box.GetAllCircles().ToList());
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void GetAllFilmFigures_FilmFiguresInBox_PositiveTestResult()
         {
             List<IFigure> expectedFigures = new List<IFigure>
@@ -156,7 +159,7 @@ namespace TaskUnitTests.BoxTests
             CollectionAssert.AreEqual(expectedFigures, Box.GetAllFilmFigures().ToList());
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void GetAllPaperFigures_PaperFiguresInBox_PositiveTestResult()
         {
             List<IFigure> expectedFigures = new List<IFigure>
@@ -170,7 +173,7 @@ namespace TaskUnitTests.BoxTests
             CollectionAssert.AreEqual(expectedFigures, Box.GetAllPaperFigures().ToList());
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void WriteAllFiguresToXml_UsingXmlWriter_PositiveTestResult()
         {
             using (XmlWriter writer = null)
@@ -183,7 +186,7 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void WritePaperFiguresToXml_UsingXmlWriter_PositiveTestResult()
         {
             List<IFigure> expectedFigures = new List<IFigure>
@@ -204,7 +207,7 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void WriteFilmFiguresToXml_UsingXmlWriter_PositiveTestResult()
         {
             List<IFigure> expectedFigures = new List<IFigure>
@@ -225,7 +228,7 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void WriteAllFiguresToXml_UsingStreamWriter_PositiveTestResult()
         {
             using (StreamWriter writer = null)
@@ -238,7 +241,7 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void WriteFilmFiguresToXml_UsingStreamWriter_PositiveTestResult()
         {
             List<IFigure> expectedFigures = new List<IFigure>
@@ -259,7 +262,7 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void WritePaperFiguresToXml_UsingStreamWriter_PositiveTestResult()
         {
             List<IFigure> expectedFigures = new List<IFigure>
@@ -280,7 +283,7 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ReadAllFiguresFromXML_UsingXmlReader_PositiveTestResult()
         {
             using (XmlReader reader = null)
@@ -290,7 +293,7 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Description("")]
         public void ReadAllFiguresFromXML_UsingStreamReader_PositiveTestResult()
         {
             using (StreamReader reader = null)
