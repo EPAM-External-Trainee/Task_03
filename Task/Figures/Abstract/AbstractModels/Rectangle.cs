@@ -21,7 +21,7 @@ namespace Task.Figures.Abstract.AbstractModels
         public override double GetArea() => Math.Round(Sides[0] * Sides[1], 2);
 
         /// <inheritdoc cref="Figure.GetPerimeter"/>
-        public override double GetPerimeter() => Math.Round(2 * (Sides[0] * Sides[1]), 2);
+        public override double GetPerimeter() => Math.Round(2 * (Sides[0] + Sides[1]), 2);
 
         public override bool Equals(object obj) => obj is Rectangle && Sides.SequenceEqual((obj as Rectangle)?.Sides);
 

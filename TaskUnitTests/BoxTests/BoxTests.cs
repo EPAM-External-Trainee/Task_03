@@ -13,7 +13,7 @@ using Task.Figures.Models.PaperFigures;
 namespace TaskUnitTests.BoxTests
 {
     /// <summary>
-    /// 
+    /// Testing methods of the <see cref="Box"/> class
     /// </summary>
     [TestClass]
     public class BoxTests

@@ -1,60 +1,44 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Task.Enums;
 using Task.Figures.Models.FilmFigures;
-using Task.Figures.Models.PaperFigures;
 using Task.MyExceptions.Models;
 
 namespace TaskUnitTests.FiguresTests.FilmFigureTests
 {
+    /// <summary>
+    /// Testing methods of the <see cref="FilmCircle"/> class
+    /// </summary>
     [TestClass]
     public class FilmCircleUnitTest
     {
-        [TestMethod, Description("")]
-        public void PaperTriangle_CutFigureSmallerOriginal_PositiveTestResult()
+        [TestMethod, Description("Testing cutting a figure that is smaller than the original one")]
+        public void FilmCircle_CutFigureSmallerOriginal_PositiveTestResult()
         {
-            PaperCircle paperCircle = new PaperCircle(9, Colors.White);
-            PaperTriangle expectedPaperTriangle = new PaperTriangle(new List<double> { 6, 7, 8 }, paperCircle);
-            PaperTriangle actualPaperTriangle = new PaperTriangle(new List<double> { 6, 7, 8 }, Colors.White);
-            Assert.AreEqual(expectedPaperTriangle, actualPaperTriangle);
+            FilmRectangle filmRectangle = new FilmRectangle(new List<double> { 6, 7, 8 });
+            FilmCircle expectedFilmCircle = new FilmCircle(2, filmRectangle);
+            FilmCircle actualFilmCircle = new FilmCircle(2);
+            Assert.AreEqual(expectedFilmCircle, actualFilmCircle);
         }
 
-        [TestMethod, Description("")]
-        public void PaperCircle_CutFigureBiggerOriginal_OutOfAreaException()
+        [TestMethod, Description("Testing cutting a figure that is bigger than the original one")]
+        public void FilmCircle_CutFigureBiggerOriginal_OutOfAreaException()
         {
-            PaperSquare paperSquare = new PaperSquare(new List<double> { 2, 2, 2, 2 }, Colors.Red);
-            Assert.ThrowsException<OutOfAreaException>(() => new PaperCircle(6, paperSquare));
+            FilmCircle filmCircle = new FilmCircle(2);
+            Assert.ThrowsException<OutOfAreaException>(() => new FilmCircle(6, filmCircle));
         }
 
-        [TestMethod, Description("")]
+        [TestMethod, Description("Testing calculating the area of a figure")]
         public void GetArea_PositiveTestResult()
         {
             FilmCircle filmCircle = new FilmCircle(10);
             Assert.IsTrue(314.16d == filmCircle.GetArea());
         }
 
-        [TestMethod, Description("")]
+        [TestMethod, Description("Testing calculating the perimeter of a figure")]
         public void GetPerimeter_PositiveTestResult()
         {
             FilmCircle filmCircle = new FilmCircle(10);
             Assert.IsTrue(62.83d == filmCircle.GetPerimeter());
-        }
-
-        [TestMethod, Description("")]
-        public void PaintOverFigure_PositiveTestResult()
-        {
-            PaperSquare paperSquare = new PaperSquare(new List<double> { 2, 2, 2, 2 }, Colors.Black);
-            paperSquare.PaintOverFigure(Colors.Blue);
-            Assert.AreEqual(Colors.Blue, paperSquare.Color);
-        }
-
-        [TestMethod, Description("")]
-        public void PaintOverFigure_IsPaintedException()
-        {
-            PaperSquare paperSquare = new PaperSquare(new List<double> { 2, 2, 2, 2 }, Colors.Black);
-            paperSquare.PaintOverFigure(Colors.Blue);
-            Assert.ThrowsException<IsPaintedException>(() => paperSquare.PaintOverFigure(Colors.White));
         }
     }
 }

@@ -20,12 +20,12 @@ namespace Task.Figures.Abstract.AbstractModels
         /// <inheritdoc cref="Figure.GetArea"/>
         public override double GetArea()
         {
-            double pmr = GetPerimeter();
+            double pmr = Math.Round(GetPerimeter() / 2, 2);
             return Math.Round(Math.Sqrt(pmr * (pmr - Sides[0]) * (pmr - Sides[1]) * (pmr - Sides[2])), 2);
         }
 
         /// <inheritdoc cref="Figure.GetPerimeter"/>
-        public override double GetPerimeter() => Math.Round((Sides[0] + Sides[1] + Sides[2]) / 2, 2);
+        public override double GetPerimeter() => Math.Round((Sides[0] + Sides[1] + Sides[2]), 2);
 
         public override bool Equals(object obj) => obj is Triangle && Sides.SequenceEqual((obj as Triangle)?.Sides);
 
