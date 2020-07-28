@@ -12,7 +12,7 @@ using Task.FileWork.Models;
 namespace Task.Box
 {
     /// <summary>
-    /// Class describing the figure box
+    /// Class describing a box of figures
     /// </summary>
     public static class Box
     {
@@ -34,7 +34,7 @@ namespace Task.Box
         static Box() => Figures = new List<IFigure>(_maxFiguresCount);
 
         /// <summary>
-        /// List for storing figures
+        /// Figures collection
         /// </summary>
         public static List<IFigure> Figures { get; private set; }
 
@@ -97,7 +97,7 @@ namespace Task.Box
         /// <summary>
         /// Add figure to figures collection
         /// </summary>
-        /// <param name="figure">Figure</param>
+        /// <param name="figure">Figure to add</param>
         public static void AddFigure(IFigure figure)
         {
             if (Figures.Contains(figure))
@@ -109,7 +109,7 @@ namespace Task.Box
         }
 
         /// <summary>
-        /// View a figure
+        /// View a figure by number
         /// </summary>
         /// <param name="number">Figure number</param>
         /// <returns>Figure</returns>
@@ -124,7 +124,7 @@ namespace Task.Box
         }
 
         /// <summary>
-        /// Extract a figure
+        /// Extract a figure by number
         /// </summary>
         /// <param name="number">Figure number</param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ namespace Task.Box
         }
 
         /// <summary>
-        /// Replace a figure
+        /// Replace a figure by number
         /// </summary>
         /// <param name="number">Number of the figure to replace</param>
         /// <param name="figure">New figure</param>
