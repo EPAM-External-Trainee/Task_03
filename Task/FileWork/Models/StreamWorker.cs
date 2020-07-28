@@ -66,10 +66,10 @@ namespace Task.FileWork.Models
                         case FigureTypes.PaperRectangle:
                         case FigureTypes.PaperSquare:
                         case FigureTypes.PaperTriangle: _paperXmlElementWriter.WritePolygonPaperFigure(writer, figure as IPaperFigure); break;
-                        case FigureTypes.FilmCircle: _filmXmlElementWriter.WriteCircularFilmFigure(writer, figure as CircularFigure); break;
+                        case FigureTypes.FilmCircle: _filmXmlElementWriter.WriteCircularFilmFigure(writer, figure as IFilmFigure); break;
                         case FigureTypes.FilmRectangle:
                         case FigureTypes.FilmSquare:
-                        case FigureTypes.FilmTriangle: _filmXmlElementWriter.WritePolygonFilmFigure(writer, figure as PolygonFigure); break;
+                        case FigureTypes.FilmTriangle: _filmXmlElementWriter.WritePolygonFilmFigure(writer, figure as IFilmFigure); break;
                     }
                 }
                 writer.WriteLine("</Figures>");

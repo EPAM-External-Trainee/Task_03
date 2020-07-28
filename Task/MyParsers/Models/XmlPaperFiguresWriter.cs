@@ -9,6 +9,7 @@ namespace Task.MyParsers.Models
 {
     public class XmlPaperFiguresWriter : XmlOperations, IPaperXmlElementWriter
     {
+        /// <inheritdoc cref="IPaperXmlElementWriter.WriteCircularPaperFigure(XmlWriter, IPaperFigure)"/>
         public void WriteCircularPaperFigure(XmlWriter writer, IPaperFigure circularFigure)
         {
             WriteElementName(writer, circularFigure as CircularFigure);
@@ -17,6 +18,7 @@ namespace Task.MyParsers.Models
             writer.WriteEndElement();
         }
 
+        /// <inheritdoc cref="IPaperXmlElementWriter.WriteCircularPaperFigure(StreamWriter, IPaperFigure)"/>
         public void WriteCircularPaperFigure(StreamWriter writer, IPaperFigure circularFigure)
         {
             WriteElementName(writer, circularFigure as CircularFigure);
@@ -25,6 +27,7 @@ namespace Task.MyParsers.Models
             WriteEndElement(writer, circularFigure as CircularFigure);
         }
 
+        /// <inheritdoc cref="IPaperXmlElementWriter.WritePolygonPaperFigure(XmlWriter, IPaperFigure)"/>
         public void WritePolygonPaperFigure(XmlWriter writer, IPaperFigure polygonFigure)
         {
             WriteElementName(writer, polygonFigure as PolygonFigure);
@@ -33,6 +36,7 @@ namespace Task.MyParsers.Models
             writer.WriteEndElement();
         }
 
+        /// <inheritdoc cref="IPaperXmlElementWriter.WritePolygonPaperFigure(StreamWriter, IPaperFigure)"/>
         public void WritePolygonPaperFigure(StreamWriter writer, IPaperFigure polygonFigure)
         {
             WriteElementName(writer, polygonFigure as PolygonFigure);
