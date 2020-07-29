@@ -15,7 +15,7 @@ namespace Task.MyExceptions.Models
         private Colors _color;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IsPaintedException"/> class with the specified error message and the color of the original shape
+        /// Initializes a new instance of the <see cref="IsPaintedException"/> class with the specified error message and the color of the original figure
         /// </summary>
         /// <param name="message">Error message</param>
         /// <param name="color">Color of original figure</param>
