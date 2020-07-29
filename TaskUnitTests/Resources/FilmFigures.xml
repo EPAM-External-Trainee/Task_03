@@ -1,1 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Figures><FilmCircle><Radius>5</Radius></FilmCircle><FilmRectangle><Sides>10 20</Sides></FilmRectangle><FilmSquare><Sides>7 7 7 7</Sides></FilmSquare><FilmTriangle><Sides>9 10 11</Sides></FilmTriangle></Figures>
+<?xml version ="1.0" encoding="utf-8" ?>
+<Figures>
+<FilmCircle>
+<Radius>5</Radius>
+</FilmCircle>
+<FilmRectangle>
+<Sides>10 20</Sides>
+</FilmRectangle>
+<FilmSquare>
+<Sides>7 7 7 7</Sides>
+</FilmSquare>
+<FilmTriangle>
+<Sides>9 10 11</Sides>
+</FilmTriangle>
+</Figures>

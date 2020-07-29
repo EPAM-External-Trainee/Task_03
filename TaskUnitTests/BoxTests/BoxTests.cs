@@ -495,46 +495,68 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod, Description("Testing writing paper figures from the box to an xml file using XmlWriter")]
-        public void WritePaperFiguresToXml_UsingXmlWriter_PositiveTestResult()
+        [DataTestMethod, Description("Testing writing paper figures from the box to an xml file using XmlWriter")]
+        [DynamicData(nameof(GetPaperFigures), DynamicDataSourceType.Method)]
+        public void WritePaperFiguresToXml_UsingXmlWriter_PositiveTestResult(IEnumerable<IFigure> expectedFigures)
         {
-            List<IFigure> expectedFigures = new List<IFigure>
-            {
-                new PaperCircle(10, Colors.White),
-                new PaperRectangle(new List<double>{6, 9}, Colors.Green),
-                new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
-                new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
-            };
-
             using (XmlWriter writer = null)
             {
                 Box.WriteFiguresFromBoxToXML(pathToXmlFileForPaperFigures, FigureMaterials.Paper, writer);
                 using (StreamReader reader = null)
                 {
-                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForPaperFigures, reader).ToList());
+                    CollectionAssert.AreEqual(expectedFigures.ToList(), Box.ReadAllFiguresFromXML(pathToXmlFileForPaperFigures, reader).ToList());
                 }
             }
         }
 
-        [TestMethod, Description("Testing writing film figures from the box to an xml file using XmlWriter")]
-        public void WriteFilmFiguresToXml_UsingXmlWriter_PositiveTestResult()
+        /// <summary>
+        /// Creating paper figures
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetPaperFigures()
         {
-            List<IFigure> expectedFigures = new List<IFigure>
+            yield return new object[]
             {
-                new FilmCircle(5),
-                new FilmRectangle(new List<double>{10, 20}),
-                new FilmSquare(new List<double>{7, 7, 7, 7}),
-                new FilmTriangle(new List<double>{9, 10, 11})
+                new List<IFigure>
+                {
+                    new PaperCircle(10, Colors.White),
+                    new PaperRectangle(new List<double>{6, 9}, Colors.Green),
+                    new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
+                    new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
+                }
             };
+        }
 
+        [DataTestMethod, Description("Testing writing film figures from the box to an xml file using XmlWriter")]
+        [DynamicData(nameof(GetFilmFigures), DynamicDataSourceType.Method)]
+        public void WriteFilmFiguresToXml_UsingXmlWriter_PositiveTestResult(IEnumerable<IFigure> expectedFigures)
+        {
             using (XmlWriter writer = null)
             {
                 Box.WriteFiguresFromBoxToXML(pathToXmlFileForFilmFigures, FigureMaterials.Film, writer);
                 using (StreamReader reader = null)
                 {
-                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForFilmFigures, reader).ToList());
+                    CollectionAssert.AreEqual(expectedFigures.ToList(), Box.ReadAllFiguresFromXML(pathToXmlFileForFilmFigures, reader).ToList());
                 }
             }
+        }
+
+        /// <summary>
+        /// Creating film figures
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetFilmFigures()
+        {
+            yield return new object[]
+            {
+                new List<IFigure>
+                {
+                    new FilmCircle(5),
+                    new FilmRectangle(new List<double>{10, 20}),
+                    new FilmSquare(new List<double>{7, 7, 7, 7}),
+                    new FilmTriangle(new List<double>{9, 10, 11})
+                }
+            };
         }
 
         [TestMethod, Description("Testing writing all figures from the box to an xml file using StreamWriter")]
@@ -550,44 +572,30 @@ namespace TaskUnitTests.BoxTests
             }
         }
 
-        [TestMethod, Description("Testing writing film figures from the box to an xml file using StreamWriter")]
-        public void WriteFilmFiguresToXml_UsingStreamWriter_PositiveTestResult()
+        [DataTestMethod, Description("Testing writing film figures from the box to an xml file using StreamWriter")]
+        [DynamicData(nameof(GetFilmFigures), DynamicDataSourceType.Method)]
+        public void WriteFilmFiguresToXml_UsingStreamWriter_PositiveTestResult(IEnumerable<IFigure> expectedFigures)
         {
-            List<IFigure> expectedFigures = new List<IFigure>
-            {
-                new FilmCircle(5),
-                new FilmRectangle(new List<double>{10, 20}),
-                new FilmSquare(new List<double>{7, 7, 7, 7}),
-                new FilmTriangle(new List<double>{9, 10, 11})
-            };
-
             using (StreamWriter writer = null)
             {
                 Box.WriteFiguresFromBoxToXML(pathToXmlFileForFilmFigures, FigureMaterials.Film, writer);
                 using (XmlReader reader = null)
                 {
-                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForFilmFigures, reader).ToList());
+                    CollectionAssert.AreEqual(expectedFigures.ToList(), Box.ReadAllFiguresFromXML(pathToXmlFileForFilmFigures, reader).ToList());
                 }
             }
         }
 
-        [TestMethod, Description("Testing writing film figures from the box to an xml file using StreamWriter")]
-        public void WritePaperFiguresToXml_UsingStreamWriter_PositiveTestResult()
+        [DataTestMethod, Description("Testing writing film figures from the box to an xml file using StreamWriter")]
+        [DynamicData(nameof(GetPaperFigures), DynamicDataSourceType.Method)]
+        public void WritePaperFiguresToXml_UsingStreamWriter_PositiveTestResult(IEnumerable<IFigure> expectedFigures)
         {
-            List<IFigure> expectedFigures = new List<IFigure>
-            {
-                new PaperCircle(10, Colors.White),
-                new PaperRectangle(new List<double>{6, 9}, Colors.Green),
-                new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
-                new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
-            };
-
             using (StreamWriter writer = null)
             {
                 Box.WriteFiguresFromBoxToXML(pathToXmlFileForPaperFigures, FigureMaterials.Paper, writer);
                 using (XmlReader reader = null)
                 {
-                    CollectionAssert.AreEqual(expectedFigures, Box.ReadAllFiguresFromXML(pathToXmlFileForPaperFigures, reader).ToList());
+                    CollectionAssert.AreEqual(expectedFigures.ToList(), Box.ReadAllFiguresFromXML(pathToXmlFileForPaperFigures, reader).ToList());
                 }
             }
         }
