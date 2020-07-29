@@ -19,7 +19,7 @@ namespace Task.Box
         /// <summary>
         /// Maximum number of figures allowed for storage in the box
         /// </summary>
-        private const byte _maxFiguresCount = 20;
+        private const int _maxFiguresCount = 20;
 
         /// <summary>
         /// Object for working with a file via XmlReader and XmlWriter
