@@ -397,31 +397,89 @@ namespace TaskUnitTests.BoxTests
             };
         }
 
-        [TestMethod, Description("Testing getting all the film figures in the box")]
-        public void GetAllFilmFigures_FilmFiguresInBox_PositiveTestResult()
+        [DataTestMethod, Description("Testing getting all the film figures in the box")]
+        [DynamicData(nameof(GetFiguresForTestingGetAllFilmFiguresMethod), DynamicDataSourceType.Method)]
+        public void GetAllFilmFigures_FilmFiguresInBox_PositiveTestResult(IEnumerable<IFigure> figures, IEnumerable<IFigure> expectedFigures)
         {
-            List<IFigure> expectedFigures = new List<IFigure>
-            {
-                new FilmCircle(5),
-                new FilmRectangle(new List<double>{10, 20}),
-                new FilmSquare(new List<double>{7, 7, 7, 7}),
-                new FilmTriangle(new List<double>{9, 10, 11})
-            };
-            CollectionAssert.AreEqual(expectedFigures, Box.GetAllFilmFigures().ToList());
+            Box.InitializeFigures(figures);
+            CollectionAssert.AreEqual(expectedFigures.ToList(), Box.GetAllFilmFigures().ToList());
         }
 
-        [TestMethod, Description("Testing getting all the paper figures in the box")]
-        public void GetAllPaperFigures_PaperFiguresInBox_PositiveTestResult()
+        /// <summary>
+        /// Creating figures for testing GetAllFilmFigures method
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingGetAllFilmFiguresMethod()
         {
-            List<IFigure> expectedFigures = new List<IFigure>
+            yield return new object[]
             {
-                new PaperCircle(10, Colors.White),
-                new PaperRectangle(new List<double>{6, 9}, Colors.Green),
-                new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
-                new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue)
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 })
+                },
+                new List<IFigure>
+                {
+                    new FilmRectangle(new List<double> { 101, 20 })
+                },
             };
 
-            CollectionAssert.AreEqual(expectedFigures, Box.GetAllPaperFigures().ToList());
+            yield return new object[]
+            {
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 }),
+                    new FilmCircle(5)
+                },
+                new List<IFigure>
+                {
+                    new FilmRectangle(new List<double> { 101, 20 }),
+                    new FilmCircle(5)
+                },
+            };
+        }
+
+        [DataTestMethod, Description("Testing getting all the paper figures in the box")]
+        [DynamicData(nameof(GetFiguresForTestingGetAllPaperFiguresMethod), DynamicDataSourceType.Method)]
+        public void GetAllPaperFigures_PaperFiguresInBox_PositiveTestResult(IEnumerable<IFigure> figures, IEnumerable<IFigure> expectedFigures)
+        {
+            Box.InitializeFigures(figures);
+            CollectionAssert.AreEqual(expectedFigures.ToList(), Box.GetAllPaperFigures().ToList());
+        }
+
+        /// <summary>
+        /// Creating figures for testing GetAllPaperFigures method
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingGetAllPaperFiguresMethod()
+        {
+            yield return new object[]
+            {
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 })
+                },
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White)
+                },
+            };
+
+            yield return new object[]
+            {
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 }),
+                    new FilmCircle(5)
+                },
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White)
+                },
+            };
         }
 
         [TestMethod, Description("Testing writing all figures from the box to an xml file using XmlWriter")]
