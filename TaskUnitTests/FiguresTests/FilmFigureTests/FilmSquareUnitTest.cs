@@ -11,34 +11,46 @@ namespace TaskUnitTests.FiguresTests.FilmFigureTests
     [TestClass]
     public class FilmSquareUnitTest
     {
-        [TestMethod, Description("Testing cutting a figure that is smaller than the original one")]
-        public void FilmSquare_CutFigureSmallerOriginal_PositiveTestResult()
+        [DataRow(8, 10, 2)]
+        [DataRow(12, 7, 3)]
+        [DataRow(21, 19, 4)]
+        [DataTestMethod, Description("Testing cutting a figure that is smaller than the original one")]
+        public void FilmSquare_CutFigureSmallerOriginal_PositiveTestResult(double rectFirstSide, double rectSecondSide, double squareSide)
         {
-            FilmRectangle filmRectangle = new FilmRectangle(new List<double> { 8, 10 });
-            FilmSquare expectedFilmSquare = new FilmSquare(new List<double> { 2, 2, 2, 2 }, filmRectangle);
-            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { 2, 2, 2, 2 });
+            FilmRectangle filmRectangle = new FilmRectangle(new List<double> { rectFirstSide, rectSecondSide });
+            FilmSquare expectedFilmSquare = new FilmSquare(new List<double> { squareSide }, filmRectangle);
+            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { squareSide });
             Assert.AreEqual(expectedFilmSquare, actualFilmSquare);
         }
 
-        [TestMethod, Description("Testing cutting a figure that is bigger than the original one")]
-        public void FilmRectangle_CutFigureBiggerOriginal_OutOfAreaException()
+        [DataRow(2, 5)]
+        [DataRow(3, 9)]
+        [DataRow(6, 7)]
+        [DataTestMethod, Description("Testing cutting a figure that is bigger than the original one")]
+        public void FilmRectangle_CutFigureBiggerOriginal_OutOfAreaException(double firstSquareSide, double secondSquareSide)
         {
-            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { 2, 2, 2, 2 });
-            Assert.ThrowsException<OutOfAreaException>(() => new FilmSquare(new List<double> { 5, 5, 5, 5 }, actualFilmSquare));
+            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { firstSquareSide });
+            Assert.ThrowsException<OutOfAreaException>(() => new FilmSquare(new List<double> { secondSquareSide }, actualFilmSquare));
         }
 
-        [TestMethod, Description("Testing calculating the area of a figure")]
-        public void GetArea_PositiveTestResult()
+        [DataRow(2, 4)]
+        [DataRow(3, 9)]
+        [DataRow(4, 16)]
+        [DataTestMethod, Description("Testing calculating the area of a figure")]
+        public void GetArea_PositiveTestResult(double squareSide, double expectedArea)
         {
-            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { 2, 2, 2, 2 });
-            Assert.IsTrue(4d == actualFilmSquare.GetArea());
+            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { squareSide });
+            Assert.AreEqual(expectedArea, actualFilmSquare.GetArea());
         }
 
-        [TestMethod, Description("Testing calculating the perimeter of a figure")]
-        public void GetPerimeter_PositiveTestResult()
+        [DataRow(2, 8)]
+        [DataRow(3, 12)]
+        [DataRow(4, 16)]
+        [DataTestMethod, Description("Testing calculating the perimeter of a figure")]
+        public void GetPerimeter_PositiveTestResult(double squareSide, double expectedPerimeter)
         {
-            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { 2, 2, 2, 2 });
-            Assert.IsTrue(8d == actualFilmSquare.GetPerimeter());
+            FilmSquare actualFilmSquare = new FilmSquare(new List<double> { squareSide });
+            Assert.AreEqual(expectedPerimeter, actualFilmSquare.GetPerimeter());
         }
     }
 }
