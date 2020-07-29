@@ -20,7 +20,7 @@ namespace Task.Figures.Abstract.AbstractModels
             {
                 throw new ArgumentException("Radius can't be equal or less than zero");
             }
-            Radius = radius;
+            CircularFigureRadius = radius;
         }
 
         /// <summary>
@@ -37,13 +37,13 @@ namespace Task.Figures.Abstract.AbstractModels
         }
 
         /// <inheritdoc cref="Figure.GetPerimeter"/>
-        public override double GetPerimeter() => Math.Round(2 * Math.PI * Radius, 2);
+        public override double GetPerimeter() => Math.Round(2 * Math.PI * CircularFigureRadius, 2);
 
         /// <inheritdoc cref="Figure.GetArea"/>
-        public override double GetArea() => Math.Round(Math.PI * Radius * Radius, 2);
+        public override double GetArea() => Math.Round(Math.PI * CircularFigureRadius * CircularFigureRadius, 2);
 
-        public override bool Equals(object obj) => obj is Circle circle && Radius == circle?.Radius;
+        public override bool Equals(object obj) => obj is Circle circle && CircularFigureRadius == circle?.CircularFigureRadius;
 
-        public override int GetHashCode() => 598075851 + Radius.GetHashCode();
+        public override int GetHashCode() => 598075851 + CircularFigureRadius.GetHashCode();
     }
 }

@@ -46,13 +46,13 @@ namespace Task.Figures.Models.PaperFigures
             IsPainted = false;
         }
 
-        public override bool Equals(object obj) => obj is PaperCircle circle && base.Equals(obj) && Radius == circle?.Radius && Color == circle?.Color && IsPainted == circle?.IsPainted;
+        public override bool Equals(object obj) => obj is PaperCircle circle && base.Equals(obj) && CircularFigureRadius == circle?.CircularFigureRadius && Color == circle?.Color && IsPainted == circle?.IsPainted;
 
         public override int GetHashCode()
         {
             int hashCode = 1204649235;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + Radius.GetHashCode();
+            hashCode = hashCode * -1521134295 + CircularFigureRadius.GetHashCode();
             hashCode = hashCode * -1521134295 + Color.GetHashCode();
             hashCode = hashCode * -1521134295 + IsPainted.GetHashCode();
             return hashCode;

@@ -11,10 +11,15 @@ namespace Task.Figures.Abstract.BaseAbstract
         /// <summary>
         /// Polygon figure sides
         /// </summary>
-        public List<double> Sides { get; protected set; }
+        protected List<double> PolygonFigureSides { get; set; }
 
-        public override bool Equals(object obj) => obj is PolygonFigure figure && Sides.SequenceEqual(figure?.Sides);
+        /// <summary>
+        /// Property for getting figure sides
+        /// </summary>
+        public List<double> Sides => PolygonFigureSides;
 
-        public override int GetHashCode() => 1814305551 + Sides.GetHashCode();
+        public override bool Equals(object obj) => obj is PolygonFigure figure && PolygonFigureSides.SequenceEqual(figure?.PolygonFigureSides);
+
+        public override int GetHashCode() => 1814305551 + PolygonFigureSides.GetHashCode();
     }
 }

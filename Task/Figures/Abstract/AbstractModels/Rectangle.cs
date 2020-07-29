@@ -22,7 +22,7 @@ namespace Task.Figures.Abstract.AbstractModels
             {
                 throw new ArgumentException("To initialize a rectangle, pass either two or four sides");
             }
-            Sides = sides.ToList();
+            PolygonFigureSides = sides.ToList();
         }
 
         /// <summary>
@@ -39,13 +39,13 @@ namespace Task.Figures.Abstract.AbstractModels
         }
 
         /// <inheritdoc cref="Figure.GetArea"/>
-        public override double GetArea() => Math.Round(Sides[0] * Sides[1], 2);
+        public override double GetArea() => Math.Round(PolygonFigureSides[0] * PolygonFigureSides[1], 2);
 
         /// <inheritdoc cref="Figure.GetPerimeter"/>
-        public override double GetPerimeter() => Math.Round(2 * (Sides[0] + Sides[1]), 2);
+        public override double GetPerimeter() => Math.Round(2 * (PolygonFigureSides[0] + PolygonFigureSides[1]), 2);
 
-        public override bool Equals(object obj) => obj is Rectangle && Sides.SequenceEqual((obj as Rectangle)?.Sides);
+        public override bool Equals(object obj) => obj is Rectangle && PolygonFigureSides.SequenceEqual((obj as Rectangle)?.PolygonFigureSides);
 
-        public override int GetHashCode() => 1814305551 + Sides.GetHashCode();
+        public override int GetHashCode() => 1814305551 + PolygonFigureSides.GetHashCode();
     }
 }

@@ -16,13 +16,13 @@ namespace Task.Figures.Models.FilmFigures
         /// <inheritdoc cref="Triangle(IEnumerable{double}, IFigure)"/>
         public FilmTriangle(IEnumerable<double> sides, IFilmFigure cutOutFilmFigure) : base(sides, cutOutFilmFigure) { }
 
-        public override bool Equals(object obj) => obj is FilmTriangle triangle && base.Equals(obj) && Sides.SequenceEqual(triangle?.Sides);
+        public override bool Equals(object obj) => obj is FilmTriangle triangle && base.Equals(obj) && PolygonFigureSides.SequenceEqual(triangle?.PolygonFigureSides);
 
         public override int GetHashCode()
         {
             int hashCode = 956485645;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + Sides.GetHashCode();
+            hashCode = hashCode * -1521134295 + PolygonFigureSides.GetHashCode();
             return hashCode;
         }
     }

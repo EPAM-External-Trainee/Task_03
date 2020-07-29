@@ -22,7 +22,7 @@ namespace Task.Figures.Abstract.AbstractModels
             {
                 throw new ArgumentException("To initialize a square, pass either one or four sides");
             }
-            Sides = sides.ToList();
+            PolygonFigureSides = sides.ToList();
         }
 
         /// <summary>
@@ -39,13 +39,13 @@ namespace Task.Figures.Abstract.AbstractModels
         }
 
         /// <inheritdoc cref="Figure.GetArea"/>
-        public override double GetArea() => Math.Round(Sides[0] * Sides[0], 2);
+        public override double GetArea() => Math.Round(PolygonFigureSides[0] * PolygonFigureSides[0], 2);
 
         /// <inheritdoc cref="Figure.GetPerimeter"/>
-        public override double GetPerimeter() => Math.Round(4 * Sides[0], 2);
+        public override double GetPerimeter() => Math.Round(4 * PolygonFigureSides[0], 2);
 
-        public override bool Equals(object obj) => obj is Square && Sides.SequenceEqual((obj as Square)?.Sides);
+        public override bool Equals(object obj) => obj is Square && PolygonFigureSides.SequenceEqual((obj as Square)?.PolygonFigureSides);
 
-        public override int GetHashCode() => 1814305551 + Sides.GetHashCode();
+        public override int GetHashCode() => 1814305551 + PolygonFigureSides.GetHashCode();
     }
 }

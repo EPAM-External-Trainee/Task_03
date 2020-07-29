@@ -22,7 +22,7 @@ namespace Task.Figures.Abstract.AbstractModels
             {
                 throw new ArgumentException("To initialize a triangle, pass three sides");
             }
-            Sides = sides.ToList();
+            PolygonFigureSides = sides.ToList();
         }
 
         /// <summary>
@@ -42,14 +42,14 @@ namespace Task.Figures.Abstract.AbstractModels
         public override double GetArea()
         {
             double pmr = Math.Round(GetPerimeter() / 2, 2);
-            return Math.Round(Math.Sqrt(pmr * (pmr - Sides[0]) * (pmr - Sides[1]) * (pmr - Sides[2])), 2);
+            return Math.Round(Math.Sqrt(pmr * (pmr - PolygonFigureSides[0]) * (pmr - PolygonFigureSides[1]) * (pmr - PolygonFigureSides[2])), 2);
         }
 
         /// <inheritdoc cref="Figure.GetPerimeter"/>
-        public override double GetPerimeter() => Math.Round((Sides[0] + Sides[1] + Sides[2]), 2);
+        public override double GetPerimeter() => Math.Round((PolygonFigureSides[0] + PolygonFigureSides[1] + PolygonFigureSides[2]), 2);
 
-        public override bool Equals(object obj) => obj is Triangle && Sides.SequenceEqual((obj as Triangle)?.Sides);
+        public override bool Equals(object obj) => obj is Triangle && PolygonFigureSides.SequenceEqual((obj as Triangle)?.PolygonFigureSides);
 
-        public override int GetHashCode() => 1814305551 + Sides.GetHashCode();
+        public override int GetHashCode() => 1814305551 + PolygonFigureSides.GetHashCode();
     }
 }

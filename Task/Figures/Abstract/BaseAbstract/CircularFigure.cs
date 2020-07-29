@@ -9,10 +9,16 @@
         /// Circular figure radius
         /// </summary>
         /// <param name="radius"></param>
-        public double Radius { get; protected set; }
+        //public double Radius { get; protected set; }
+        protected double CircularFigureRadius { get; set; }
 
-        public override bool Equals(object obj) => obj is CircularFigure figure && Radius == figure?.Radius;
+        /// <summary>
+        /// Property for getting figure radius
+        /// </summary>
+        public double Radius => CircularFigureRadius;
 
-        public override int GetHashCode() => 598075851 + Radius.GetHashCode();
+        public override bool Equals(object obj) => obj is CircularFigure figure && CircularFigureRadius == figure?.CircularFigureRadius;
+
+        public override int GetHashCode() => 598075851 + CircularFigureRadius.GetHashCode();
     }
 }
