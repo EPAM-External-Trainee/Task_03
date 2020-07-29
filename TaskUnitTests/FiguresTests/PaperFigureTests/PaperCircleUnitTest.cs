@@ -15,9 +15,9 @@ namespace TaskUnitTests.FiguresTests.PaperFigureTests
         [TestMethod, Description("Testing cutting a figure that is smaller than the original one")]
         public void PaperCircle_CutFigureSmallerOriginal_PositiveTestResult()
         {
-            PaperRectangle paperRectangle = new PaperRectangle(new List<double> { 6, 7, 8 }, Task.Enums.Colors.Black);
+            PaperRectangle paperRectangle = new PaperRectangle(new List<double> { 6, 7 }, Colors.Black);
             PaperCircle expectedPaperCircle = new PaperCircle(2, paperRectangle);
-            PaperCircle actualPaperCircle = new PaperCircle(2, Task.Enums.Colors.Black);
+            PaperCircle actualPaperCircle = new PaperCircle(2, Colors.Black);
             Assert.AreEqual(expectedPaperCircle, actualPaperCircle);
         }
 

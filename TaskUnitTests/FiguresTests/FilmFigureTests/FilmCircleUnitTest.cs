@@ -14,7 +14,7 @@ namespace TaskUnitTests.FiguresTests.FilmFigureTests
         [TestMethod, Description("Testing cutting a figure that is smaller than the original one")]
         public void FilmCircle_CutFigureSmallerOriginal_PositiveTestResult()
         {
-            FilmRectangle filmRectangle = new FilmRectangle(new List<double> { 6, 7, 8 });
+            FilmRectangle filmRectangle = new FilmRectangle(new List<double> { 6, 7 });
             FilmCircle expectedFilmCircle = new FilmCircle(2, filmRectangle);
             FilmCircle actualFilmCircle = new FilmCircle(2);
             Assert.AreEqual(expectedFilmCircle, actualFilmCircle);

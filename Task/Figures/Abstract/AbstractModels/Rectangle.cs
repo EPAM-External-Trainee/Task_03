@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Task.Figures.Abstract.BaseAbstract;
 using Task.Figures.Interfaces;
+using Task.MyExceptions.Models;
 
 namespace Task.Figures.Abstract.AbstractModels
 {
@@ -11,11 +12,31 @@ namespace Task.Figures.Abstract.AbstractModels
     /// </summary>
     public abstract class Rectangle : PolygonFigure
     {
-        /// <inheritdoc cref="PolygonFigure(IEnumerable{double})"/>
-        protected Rectangle(IEnumerable<double> sides) : base(sides) { }
+        /// <summary>
+        /// Instance constructor for creating a rectangle figure through the radius
+        /// </summary>
+        /// <param name="radius">Rectangle radius</param>
+        protected Rectangle(IEnumerable<double> sides)
+        {
+            if(sides.Count() != 2 && sides.Count() != 4)
+            {
+                throw new ArgumentException("To initialize a rectangle, pass either two or four sides");
+            }
+            Sides = sides.ToList();
+        }
 
-        /// <inheritdoc cref="PolygonFigure(IEnumerable{double}, IFigure)"/>
-        protected Rectangle(IEnumerable<double> sides, IFigure cutOutFigure) : base(sides, cutOutFigure) { }
+        /// <summary>
+        /// Instance constructor for creating a rectangle figure through the sides and another figure
+        /// </summary>
+        /// <param name="sides">Rectangle sides</param>
+        /// <param name="cutOutFigure">Cut out the figure</param>
+        protected Rectangle(IEnumerable<double> sides, IFigure cutOutFigure) : this(sides)
+        {
+            if (GetArea() > cutOutFigure.GetArea())
+            {
+                throw new OutOfAreaException("You can't cut a figure because the original shape is smaller", this, cutOutFigure);
+            }
+        }
 
         /// <inheritdoc cref="Figure.GetArea"/>
         public override double GetArea() => Math.Round(Sides[0] * Sides[1], 2);
