@@ -21,13 +21,13 @@ namespace TaskUnitTests.BoxTests
         private static readonly List<IFigure> _figures = new List<IFigure>()
         {
             new PaperCircle(10, Colors.White),
-            new PaperRectangle(new List<double>{6, 9}, Colors.Green),
-            new PaperSquare(new List<double>{4, 4, 4, 4}, Colors.Red),
-            new PaperTriangle(new List<double>{6, 7, 8}, Colors.Blue),
+            new PaperRectangle(new List<double> { 6, 9 }, Colors.Green),
+            new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red),
+            new PaperTriangle(new List<double> { 6, 7, 8 }, Colors.Blue),
             new FilmCircle(5),
-            new FilmRectangle(new List<double>{10, 20}),
-            new FilmSquare(new List<double>{7, 7, 7, 7}),
-            new FilmTriangle(new List<double>{9, 10, 11}),
+            new FilmRectangle(new List<double>{ 10, 20 }),
+            new FilmSquare(new List<double> { 7, 7, 7, 7 }),
+            new FilmTriangle(new List<double> { 9, 10, 11 }),
         };
         private static readonly string pathToXmlFileForAllFigures = @"..\..\Resources\Figures.xml";
         private static readonly string pathToXmlFileForPaperFigures = @"..\..\Resources\PaperFigures.xml";
@@ -45,81 +45,214 @@ namespace TaskUnitTests.BoxTests
             Box.InitializeFigures(_figures);
         }
 
-        [TestMethod, Description("Testing adding a unique figure to a collection")]
-        public void AddFigure_UniqFigure_PositiveTestResult()
+        [DataTestMethod, Description("Testing adding a unique figure to a collection")]
+        [DynamicData(nameof(GetFiguresForTestingAddUniqFigureMethod), DynamicDataSourceType.Method)]
+        public void AddFigure_UniqFigure_PositiveTestResult(IFigure figure)
         {
-            PaperCircle paperCircle = new PaperCircle(5, Colors.Blue);
-            Box.AddFigure(paperCircle);
-            Assert.AreEqual(paperCircle, Box.ViewFigure(Box.CurrentFiguresCount));
+            Box.AddFigure(figure);
+            Assert.AreEqual(figure, Box.ViewFigure(Box.CurrentFiguresCount));
         }
 
-        [TestMethod, Description("Testing adding a non unique figure to the collection")]
-        public void AddFigure_NotUniqFigure_ArgumentException()
+        /// <summary>
+        /// Creating uniq figures for testing AddFigure method
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingAddUniqFigureMethod()
         {
-            PaperCircle paperCircle = new PaperCircle(10, Colors.White);
-            Assert.ThrowsException<ArgumentException>(() => Box.AddFigure(paperCircle));
+            yield return new object[] { new PaperCircle(5, Colors.Blue) };
+            yield return new object[] { new FilmRectangle(new List<double> { 5, 6 }) };
+            yield return new object[] { new PaperSquare(new List<double> { 5 }, Colors.Green) };
+            yield return new object[] { new FilmTriangle(new List<double> { 5, 6, 7 }) };
         }
 
-        [TestMethod, Description("Testing viewing a figure by the correct number")]
-        public void ViewFigure_NumberInRange_PositiveTestResult()
+        [DataTestMethod, Description("Testing adding a non unique figure to the collection")]
+        [DynamicData(nameof(GetFiguresForTestingAddNonUniqFigureMethod), DynamicDataSourceType.Method)]
+        public void AddFigure_NotUniqFigure_ArgumentException(IFigure figure)
         {
-            PaperCircle paperCircle = new PaperCircle(10, Colors.White);
-            Assert.AreEqual(paperCircle, Box.ViewFigure(1));
+            Assert.ThrowsException<ArgumentException>(() => Box.AddFigure(figure));
         }
 
-        [TestMethod, Description("Testing viewing a figure by an incorrect number")]
-        public void ViewFigure_NumberOutOfRange_IndexOutOfRangeException()
+        /// <summary>
+        /// Creating non uniq figures for testing AddFigure method
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingAddNonUniqFigureMethod()
         {
-            Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ViewFigure(21));
+            yield return new object[] { new PaperCircle(10, Colors.White) };
+            yield return new object[] { new FilmRectangle(new List<double> { 10, 20 }) };
+            yield return new object[] { new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red) };
+            yield return new object[] { new FilmTriangle(new List<double> { 9, 10, 11 }) };
         }
 
-        [TestMethod, Description("Testing the figure extraction by the correct number")]
-        public void ExtractFigure_NumberInRange_PositiveTestResult()
+        [DataTestMethod, Description("Testing viewing a figure by the correct number")]
+        [DynamicData(nameof(GetFiguresForTestingViewFigureMethodWithCorrectNumber), DynamicDataSourceType.Method)]
+        public void ViewFigure_NumberInRange_PositiveTestResult(int number, IFigure expectedFigure)
+        {
+            Assert.AreEqual(expectedFigure, Box.ViewFigure(number));
+        }
+
+        /// <summary>
+        /// Creating figures for testing ViewFigure method with correct number 
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingViewFigureMethodWithCorrectNumber()
+        {
+            yield return new object[] { 1, new PaperCircle(10, Colors.White) };
+            yield return new object[] { 6, new FilmRectangle(new List<double> { 10, 20 }) };
+            yield return new object[] { 3, new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red) };
+            yield return new object[] { 8, new FilmTriangle(new List<double> { 9, 10, 11 }) };
+        }
+
+        [DataRow(22)]
+        [DataRow(41)]
+        [DataRow(190)]
+        [DataTestMethod, Description("Testing viewing a figure by an incorrect number")]
+        public void ViewFigure_NumberOutOfRange_IndexOutOfRangeException(int number)
+        {
+            Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ViewFigure(number));
+        }
+
+        [DataTestMethod, Description("Testing the figure extraction by the correct number")]
+        [DynamicData(nameof(GetFiguresForTestingExtractFigureMethodWithCorrectNumber), DynamicDataSourceType.Method)]
+        public void ExtractFigure_NumberInRange_PositiveTestResult(int number, IFigure expectedFigure)
         {
             int figuresCountBeforeExtract = Box.CurrentFiguresCount;
-            Box.ExtractFigure(1);
+            Assert.AreEqual(expectedFigure, Box.ExtractFigure(number));
             Assert.IsTrue(figuresCountBeforeExtract > Box.CurrentFiguresCount);
         }
 
-        [TestMethod, Description("Testing the figure extraction by an incorrect number")]
-        public void ExtractFigure_NumberOutOfRange_IndexOutOfRangeException()
+        /// <summary>
+        /// Creating figures for testing ExtractFigure method with correct number 
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingExtractFigureMethodWithCorrectNumber()
         {
-            Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ExtractFigure(13));
+            yield return new object[] { 1, new PaperCircle(10, Colors.White) };
+            yield return new object[] { 6, new FilmRectangle(new List<double> { 10, 20 }) };
+            yield return new object[] { 3, new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red) };
+            yield return new object[] { 8, new FilmTriangle(new List<double> { 9, 10, 11 }) };
         }
 
-        [TestMethod, Description("Testing the replacement of a figure with the correct number")]
-        public void ReplaceFigure__NumberInRange_PositiveTestResult()
+        [DataRow(25)]
+        [DataRow(125)]
+        [DataRow(325)]
+        [DataTestMethod, Description("Testing the figure extraction by an incorrect number")]
+        public void ExtractFigure_NumberOutOfRange_IndexOutOfRangeException(int number)
         {
-            PaperRectangle paperRectangle = new PaperRectangle(new List<double> { 6, 9 }, Colors.Green);
-            Box.ReplaceFigure(1, paperRectangle);
-            Assert.AreEqual(paperRectangle, Box.ViewFigure(1));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ExtractFigure(number));
         }
 
-        [TestMethod, Description("Testing the replacement of a figure with an incorrect number")]
-        public void ReplaceFigure__NumberOutOfRange_IndexOutOfRangeException()
+        [DataTestMethod, Description("Testing the replacement of a figure with the correct number")]
+        [DynamicData(nameof(GetFiguresForTestingReplaceFigureMethodWithCorrectNumber), DynamicDataSourceType.Method)]
+        public void ReplaceFigure__NumberInRange_PositiveTestResult(int number, IFigure newFigure)
         {
-            PaperRectangle paperRectangle = new PaperRectangle(new List<double> { 6, 9 }, Colors.Green);
-            Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ReplaceFigure(66, paperRectangle));
+            Box.ReplaceFigure(number, newFigure);
+            Assert.AreEqual(newFigure, Box.ViewFigure(number));
         }
 
-        [TestMethod, Description("Testing finding the same figure when there is one in the box")]
-        public void FindEqualFigure_DesiredFigureInBox_PositiveTestResult()
+        /// <summary>
+        /// Creating figures for testing ReplaceFigure method with correct number 
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingReplaceFigureMethodWithCorrectNumber()
         {
-            PaperCircle paperCircle = new PaperCircle(10, Colors.White);
-            Assert.AreEqual(paperCircle, Box.FindEqualFigure(paperCircle));
+            yield return new object[] { 1, new FilmTriangle(new List<double> { 9, 10, 11 }) };
+            yield return new object[] { 6, new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red) };
+            yield return new object[] { 3, new FilmRectangle(new List<double> { 10, 20 }) };
+            yield return new object[] { 8, new PaperCircle(10, Colors.White) };
         }
 
-        [TestMethod, Description("Testing for finding the same figure when it's not in the box")]
-        public void FindEqualFigure_DesiredFigureOutOfBox_Null()
+        [DataTestMethod, Description("Testing the replacement of a figure with an incorrect number")]
+        [DynamicData(nameof(GetFiguresForTestingReplaceFigureMethodWithIncorrectNumber), DynamicDataSourceType.Method)]
+        public void ReplaceFigure__NumberOutOfRange_IndexOutOfRangeException(int number, IFigure newFigure)
         {
-            PaperCircle paperCircle = new PaperCircle(10, Colors.Green);
-            Assert.IsNull(Box.FindEqualFigure(paperCircle));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => Box.ReplaceFigure(number, newFigure));
         }
 
-        [TestMethod, Description("Testing finding the current number of figures in a box")]
-        public void CurrentFiguresCount_PositiveTestResult()
+        /// <summary>
+        /// Creating figures for testing ReplaceFigure method with correct number 
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingReplaceFigureMethodWithIncorrectNumber()
         {
-            Assert.IsTrue(Box.CurrentFiguresCount == 8);
+            yield return new object[] { 133, new FilmTriangle(new List<double> { 9, 10, 11 }) };
+            yield return new object[] { 666, new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red) };
+            yield return new object[] { 35, new FilmRectangle(new List<double> { 10, 20 }) };
+            yield return new object[] { 81, new PaperCircle(10, Colors.White) };
+        }
+
+        [DataTestMethod, Description("Testing finding the same figure when there is one in the box")]
+        [DynamicData(nameof(GetFiguresForTestingFindEqualFigureMethodDesiredFigureInBox), DynamicDataSourceType.Method)]
+        public void FindEqualFigure_DesiredFigureInBox_PositiveTestResult(IFigure desiredFigure, IFigure expectedFiugre)
+        {
+            Assert.AreEqual(expectedFiugre, Box.FindEqualFigure(desiredFigure));
+        }
+
+        /// <summary>
+        /// Creating figures for testing FindEqualFigure method for case when desired figure is in box
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingFindEqualFigureMethodDesiredFigureInBox()
+        {
+            yield return new object[] { new PaperCircle(10, Colors.White), new PaperCircle(10, Colors.White) };
+            yield return new object[] { new FilmRectangle(new List<double> { 10, 20 }), new FilmRectangle(new List<double> { 10, 20 }) };
+            yield return new object[] { new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red), new PaperSquare(new List<double> { 4, 4, 4, 4 }, Colors.Red) };
+            yield return new object[] { new FilmTriangle(new List<double> { 9, 10, 11 }), new FilmTriangle(new List<double> { 9, 10, 11 }) };
+        }
+
+        [DataTestMethod, Description("Testing for finding the same figure when it's not in the box")]
+        [DynamicData(nameof(GetFiguresForTestingFindEqualFigureMethodDesiredFigureOutOfBox), DynamicDataSourceType.Method)]
+        public void FindEqualFigure_DesiredFigureOutOfBox_Null(IFigure desiredFigure)
+        {
+            Assert.IsNull(Box.FindEqualFigure(desiredFigure));
+        }
+
+        /// <summary>
+        /// Creating figures for testing FindEqualFigure method for case when desired figure is out of box
+        /// </summary>
+        /// <returns>Figure object</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingFindEqualFigureMethodDesiredFigureOutOfBox()
+        {
+            yield return new object[] { new PaperCircle(11, Colors.White)};
+            yield return new object[] { new FilmRectangle(new List<double> { 101, 20 })};
+            yield return new object[] { new PaperSquare(new List<double> { 5 }, Colors.Red) };
+            yield return new object[] { new FilmTriangle(new List<double> { 9, 10, 12 }) };
+        }
+
+        [DataTestMethod, Description("Testing finding the current number of figures in a box")]
+        [DynamicData(nameof(GetFiguresForTestingCurrentFiguresCountProperty), DynamicDataSourceType.Method)]
+        public void CurrentFiguresCount_PositiveTestResult(IEnumerable<IFigure> figures, int expectedFiguresCount)
+        {
+            Box.InitializeFigures(figures);
+            Assert.AreEqual(expectedFiguresCount, Box.CurrentFiguresCount);
+        }
+
+        /// <summary>
+        /// Creating figures for testing CurrentFiguresCount property
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingCurrentFiguresCountProperty()
+        {
+            yield return new object[] { new List<IFigure> 
+            {
+                new PaperCircle(11, Colors.White), 
+                new FilmRectangle(new List<double> { 101, 20 }) },
+                2 
+            };
+
+            yield return new object[] { new List<IFigure> 
+            { 
+                new PaperCircle(12, Colors.White) }, 
+                1 
+            };
+
+            yield return new object[] { new List<IFigure>
+            {
+                new PaperCircle(10, Colors.White),
+                new FilmRectangle(new List<double> { 12, 20 }),
+                new PaperSquare(new List<double> { 3 }, Colors.Red) },
+                3
+            };
         }
 
         [TestMethod, Description("Testing finding the total area of all figures in a box")]
