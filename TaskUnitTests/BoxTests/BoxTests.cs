@@ -233,50 +233,168 @@ namespace TaskUnitTests.BoxTests
         /// <returns>Figures collection</returns>
         private static IEnumerable<object[]> GetFiguresForTestingCurrentFiguresCountProperty()
         {
-            yield return new object[] { new List<IFigure> 
+            yield return new object[]
             {
-                new PaperCircle(11, Colors.White), 
-                new FilmRectangle(new List<double> { 101, 20 }) },
+                new List<IFigure> 
+                {
+                    new PaperCircle(11, Colors.White), 
+                    new FilmRectangle(new List<double> { 101, 20 }) 
+                },
                 2 
             };
 
-            yield return new object[] { new List<IFigure> 
+            yield return new object[] 
             { 
-                new PaperCircle(12, Colors.White) }, 
+                new List<IFigure> 
+                { 
+                    new PaperCircle(12, Colors.White) 
+                }, 
                 1 
             };
 
-            yield return new object[] { new List<IFigure>
-            {
-                new PaperCircle(10, Colors.White),
-                new FilmRectangle(new List<double> { 12, 20 }),
-                new PaperSquare(new List<double> { 3 }, Colors.Red) },
+            yield return new object[] 
+            { 
+                new List<IFigure>
+                {
+                    new PaperCircle(10, Colors.White),
+                    new FilmRectangle(new List<double> { 12, 20 }),
+                    new PaperSquare(new List<double> { 3 }, Colors.Red)
+                },
                 3
             };
         }
 
-        [TestMethod, Description("Testing finding the total area of all figures in a box")]
-        public void TotalArea_PositiveTestResult()
+        [DataTestMethod, Description("Testing finding the total area of all figures in a box")]
+        [DynamicData(nameof(GetFiguresForTestingTotalAreaProperty), DynamicDataSourceType.Method)]
+        public void TotalArea_PositiveTestResult(IEnumerable<IFigure> figures, double expectedTotalArea)
         {
-            Assert.IsTrue(774.46d == Box.TotalArea);
+            Box.InitializeFigures(figures);
+            Assert.AreEqual(expectedTotalArea, Box.TotalArea);
         }
 
-        [TestMethod, Description("Testing finding the total perimeter of all figures in a box")]
-        public void TotalPerimeter_PositiveTestResult()
+        /// <summary>
+        /// Creating figures for testing TotalArea property
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingTotalAreaProperty()
         {
-            Assert.IsTrue(279.25d == Box.TotalPerimeter);
-        }
-
-        [TestMethod, Description("Testing getting all the circles in the box")]
-        public void GetAllCircles_CirclesInBox_PositiveTestResult()
-        {
-            List<IFigure> expectedFigures = new List<IFigure>
-            {
-                new PaperCircle(10, Colors.White),
-                new FilmCircle(5)
+            yield return new object[] 
+            { 
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 }) 
+                },
+                2400.13
             };
 
-            CollectionAssert.AreEqual(expectedFigures, Box.GetAllCircles().ToList());
+            yield return new object[]
+            { 
+                new List<IFigure>
+                {
+                    new PaperCircle(12, Colors.White)
+                },
+                452.39
+            };
+
+            yield return new object[] 
+            {
+                new List<IFigure>
+                {
+                    new PaperCircle(10, Colors.White),
+                    new FilmRectangle(new List<double> { 12, 20 }),
+                    new PaperSquare(new List<double> { 3 }, Colors.Red)
+                },
+                563.16
+            };
+        }
+
+        [DataTestMethod, Description("Testing finding the total perimeter of all figures in a box")]
+        [DynamicData(nameof(GetFiguresForTestingTotalPerimeterProperty), DynamicDataSourceType.Method)]
+        public void TotalPerimeter_PositiveTestResult(IEnumerable<IFigure> figures, double expectedTotalPerimeter)
+        {
+            Box.InitializeFigures(figures);
+            Assert.AreEqual(expectedTotalPerimeter, Box.TotalPerimeter);
+        }
+
+        /// <summary>
+        /// Creating figures for testing TotalPerimeter property
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingTotalPerimeterProperty()
+        {
+            yield return new object[]
+            { 
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 }) 
+                },
+                311.12
+            };
+
+            yield return new object[]
+            { 
+                new List<IFigure>
+                {
+                    new PaperCircle(12, Colors.White) 
+                },
+                75.4
+            };
+
+            yield return new object[]
+            {
+                new List<IFigure>
+                {
+                    new PaperCircle(10, Colors.White),
+                    new FilmRectangle(new List<double> { 12, 20 }),
+                    new PaperSquare(new List<double> { 3 }, Colors.Red) 
+                },
+                138.83
+            };
+        }
+
+        [DataTestMethod, Description("Testing getting all the circles in the box")]
+        [DynamicData(nameof(GetFiguresForTestingGetAllCirclesMethod), DynamicDataSourceType.Method)]
+        public void GetAllCircles_CirclesInBox_PositiveTestResult(IEnumerable<IFigure> figures, IEnumerable<IFigure> expectedFigures)
+        {
+            Box.InitializeFigures(figures);
+            CollectionAssert.AreEqual(expectedFigures.ToList(), Box.GetAllCircles().ToList());
+        }
+
+        /// <summary>
+        /// Creating figures for testing GetAllCircles method
+        /// </summary>
+        /// <returns>Figures collection</returns>
+        private static IEnumerable<object[]> GetFiguresForTestingGetAllCirclesMethod()
+        {
+            yield return new object[]
+            { 
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 }) 
+                },
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                },
+            };
+
+            yield return new object[]
+            {
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmRectangle(new List<double> { 101, 20 }),
+                    new FilmCircle(5)
+                },
+                new List<IFigure>
+                {
+                    new PaperCircle(11, Colors.White),
+                    new FilmCircle(5)
+                },
+            };
         }
 
         [TestMethod, Description("Testing getting all the film figures in the box")]
