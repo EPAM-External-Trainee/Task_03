@@ -36,7 +36,7 @@ namespace Task.Box
         /// <summary>
         /// Figures collection
         /// </summary>
-        public static List<IFigure> Figures { get; private set; }
+        private static List<IFigure> Figures { get; set; }
 
         /// <summary>
         /// Calculating the total area of the figures in the box
