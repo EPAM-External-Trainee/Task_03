@@ -1,4 +1,6 @@
-# Task
+# EPAM_External_Trainee_Task_03_Konstantin_Kapatkov
+## Task03. Inheritance. Interfaces and Abstract Classes
+### Task
 * 1.1. Develop a class hierarchy to solve the problem, using the capabilities of OOP: classes, inheritance, polymorphism, encapsulation, interface capabilities and multiple inheritance, use the capabilities of Enum and inner classes.
 * 1.2. Each class should have a comprehensive meaning, name and informative composition.
 * 1.3. Classes are grouped according to their meaning in the corresponding class libraries.
