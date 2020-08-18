@@ -18,7 +18,7 @@ namespace Task.Figures.Abstract.AbstractModels
         /// <param name="sides">Square sides</param>
         protected Square(IEnumerable<double> sides)
         {
-            if(sides.Count() != 1 && sides.Count() != 4)
+            if (sides.Count() != 1 && sides.Count() != 4)
             {
                 throw new ArgumentException("To initialize a square, pass either one or four sides");
             }

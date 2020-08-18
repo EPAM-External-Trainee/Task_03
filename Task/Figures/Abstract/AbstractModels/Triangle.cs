@@ -18,7 +18,7 @@ namespace Task.Figures.Abstract.AbstractModels
         /// <param name="sides">Triangle sides</param>
         protected Triangle(IEnumerable<double> sides)
         {
-            if(sides.Count() != 3)
+            if (sides.Count() != 3)
             {
                 throw new ArgumentException("To initialize a triangle, pass three sides");
             }

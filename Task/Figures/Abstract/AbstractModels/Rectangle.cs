@@ -18,7 +18,7 @@ namespace Task.Figures.Abstract.AbstractModels
         /// <param name="radius">Rectangle radius</param>
         protected Rectangle(IEnumerable<double> sides)
         {
-            if(sides.Count() != 2 && sides.Count() != 4)
+            if (sides.Count() != 2 && sides.Count() != 4)
             {
                 throw new ArgumentException("To initialize a rectangle, pass either two or four sides");
             }

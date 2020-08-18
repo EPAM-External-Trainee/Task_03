@@ -16,7 +16,7 @@ namespace Task.Figures.Abstract.AbstractModels
         /// <param name="radius">Circle radius</param>
         protected Circle(double radius)
         {
-            if(radius <= 0d)
+            if (radius <= 0d)
             {
                 throw new ArgumentException("Radius can't be equal or less than zero");
             }

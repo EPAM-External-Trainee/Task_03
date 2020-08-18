@@ -1,6 +1,5 @@
 ﻿using System.Xml;
 using System.Xml.Linq;
-using Task.Figures.Interfaces;
 using Task.Figures.Models.PaperFigures;
 
 namespace Task.MyParsers.Interfaces

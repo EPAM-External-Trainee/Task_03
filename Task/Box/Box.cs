@@ -36,7 +36,7 @@ namespace Task.Box
         /// <summary>
         /// Figures collection
         /// </summary>
-        private static List<IFigure> Figures { get; set; }
+        private static List<IFigure> Figures { get; }
 
         /// <summary>
         /// Calculating the total area of the figures in the box
@@ -91,7 +91,7 @@ namespace Task.Box
             }
 
             Figures.Clear();
-            figures.ToList().ForEach(f => AddFigure(f));
+            figures.ToList().ForEach(AddFigure);
         }
 
         /// <summary>
