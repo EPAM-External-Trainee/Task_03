@@ -1,4 +1,4 @@
-# EPAM_External_Trainee_Task_03_Konstantin_Kapatkov
+# .NET Summer 2020 (external)
 ## Task03. Inheritance. Interfaces and Abstract Classes
 ### Task
 * 1.1. Develop a class hierarchy to solve the problem, using the capabilities of OOP: classes, inheritance, polymorphism, encapsulation, interface capabilities and multiple inheritance, use the capabilities of Enum and inner classes.
